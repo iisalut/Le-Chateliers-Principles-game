@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c80m0tjntyelg"]
+
+[ext_resource type="Script" uid="uid://db6sying4eqq5" path="res://game_manager.gd" id="1_kninm"]
+
+[node name="quiz" type="Control" unique_id=987375832]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kninm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1357482995]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 1, 0.8, 1)
+
+[node name="question_label" type="RichTextLabel" parent="." unique_id=886499720]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 113.0
+offset_right = 837.0
+offset_bottom = 272.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+
+[node name="enthalpy_label" type="RichTextLabel" parent="." unique_id=1112398362]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 171.0
+offset_right = 522.0
+offset_bottom = 235.0
+theme_override_colors/default_color = Color(0.9129348, 0, 0.20002878, 1)
+theme_override_font_sizes/normal_font_size = 26
+
+[node name="Button" type="Button" parent="." unique_id=317094057]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 340.0
+offset_right = 649.0
+offset_bottom = 421.0
+theme_override_font_sizes/font_size = 30
+text = "Next qs"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MainGame="*uid://5fhoof8nyw3p"
+QsData="*uid://dropiolsnu65f"
 
 [editor_plugins]
 
