@@ -1,6 +1,27 @@
 [gd_scene format=3 uid="uid://c80m0tjntyelg"]
 
 [ext_resource type="Script" uid="uid://db6sying4eqq5" path="res://game_manager.gd" id="1_kninm"]
+[ext_resource type="Texture2D" uid="uid://b7aprc0n0lgul" path="res://blue_grabber.PNG" id="2_k7kv1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kninm"]
+bg_color = Color(0.60038817, 0.43917835, 0.60038817, 1)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+
+[sub_resource type="Gradient" id="Gradient_k7kv1"]
+offsets = PackedFloat32Array(0.4976744, 0.5069767)
+colors = PackedColorArray(3.946722e-06, 0.6260731, 0.78854394, 1, 1, 0.43177995, 0.39098734, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i0i4q"]
+gradient = SubResource("Gradient_k7kv1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmnlm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i0i4q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgkws"]
 
 [node name="quiz" type="Control" unique_id=987375832]
 layout_mode = 3
@@ -20,29 +41,59 @@ color = Color(1, 1, 0.8, 1)
 [node name="question_label" type="RichTextLabel" parent="." unique_id=886499720]
 layout_mode = 0
 offset_left = 261.0
-offset_top = 113.0
+offset_top = 12.0
 offset_right = 837.0
-offset_bottom = 272.0
+offset_bottom = 171.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
+text = "questions"
 
 [node name="enthalpy_label" type="RichTextLabel" parent="." unique_id=1112398362]
 layout_mode = 0
 offset_left = 261.0
-offset_top = 171.0
+offset_top = 58.0
 offset_right = 522.0
-offset_bottom = 235.0
+offset_bottom = 122.0
 theme_override_colors/default_color = Color(0.9129348, 0, 0.20002878, 1)
 theme_override_font_sizes/normal_font_size = 26
+text = "enthalpy"
 
 [node name="Button" type="Button" parent="." unique_id=317094057]
 layout_mode = 0
-offset_left = 403.0
-offset_top = 340.0
-offset_right = 649.0
-offset_bottom = 421.0
+offset_left = 441.0
+offset_top = 526.0
+offset_right = 687.0
+offset_bottom = 607.0
 theme_override_font_sizes/font_size = 30
 text = "Next qs"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1756060802]
+clip_children = 1
+layout_mode = 0
+offset_left = 115.0
+offset_top = 406.0
+offset_right = 1031.0
+offset_bottom = 432.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kninm")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer" unique_id=76080980]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_i0i4q")
+
+[node name="HSlider2" type="HSlider" parent="." unique_id=2080033539]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 398.0
+offset_right = 1031.0
+offset_bottom = 438.0
+theme_override_icons/grabber = ExtResource("2_k7kv1")
+theme_override_icons/grabber_highlight = ExtResource("2_k7kv1")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_rmnlm")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_i0i4q")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_hgkws")
+min_value = -50.0
+max_value = 50.0
+step = 10.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

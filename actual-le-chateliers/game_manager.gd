@@ -21,6 +21,7 @@ func choose_temp_qs():
 		curr_enthalpy=inner_dict[rxn]
 			
 
+
 func final_temp():
 	random_select_temp= randi_range(0,5)
 	choose_temp_qs()
