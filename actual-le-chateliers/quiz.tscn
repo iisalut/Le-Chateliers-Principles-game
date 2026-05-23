@@ -40,24 +40,24 @@ color = Color(1, 1, 0.8, 1)
 
 [node name="question_label" type="RichTextLabel" parent="." unique_id=886499720]
 layout_mode = 0
-offset_left = 261.0
-offset_top = 12.0
-offset_right = 837.0
-offset_bottom = 171.0
+offset_left = 139.0
+offset_top = 75.0
+offset_right = 715.0
+offset_bottom = 127.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "questions"
 
 [node name="enthalpy_label" type="RichTextLabel" parent="." unique_id=1112398362]
 layout_mode = 0
-offset_left = 261.0
-offset_top = 58.0
-offset_right = 522.0
-offset_bottom = 122.0
+offset_left = 806.0
+offset_top = 75.0
+offset_right = 1137.0
+offset_bottom = 139.0
 theme_override_colors/default_color = Color(0.9129348, 0, 0.20002878, 1)
-theme_override_font_sizes/normal_font_size = 26
-text = "enthalpy"
+theme_override_font_sizes/normal_font_size = 32
+text = "Enthalpy:"
 
 [node name="Button" type="Button" parent="." unique_id=317094057]
 layout_mode = 0
@@ -101,15 +101,63 @@ offset_bottom = 584.0
 theme_override_font_sizes/font_size = 24
 text = "Submit answer"
 
+[node name="static stuff" type="Node" parent="." unique_id=1215765184]
+
+[node name="score_label" type="RichTextLabel" parent="static stuff" unique_id=423988060]
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 214.0
+offset_bottom = 61.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 26
+text = "Score: "
+
+[node name="qs_title" type="RichTextLabel" parent="static stuff" unique_id=1490217065]
+offset_left = 139.0
+offset_top = 31.0
+offset_right = 666.0
+offset_bottom = 87.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "Consider the following equation:"
+
+[node name="product_label" type="RichTextLabel" parent="static stuff" unique_id=1426051611]
+offset_left = 1042.0
+offset_top = 412.0
+offset_right = 1158.0
+offset_bottom = 452.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 19
+text = "Products"
+
+[node name="reactant_label" type="RichTextLabel" parent="static stuff" unique_id=486680919]
+offset_left = 13.0
+offset_top = 412.0
+offset_right = 133.0
+offset_bottom = 452.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 19
+text = "Reactants"
+
 [node name="answer_label" type="RichTextLabel" parent="." unique_id=1630171024]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 313.0
-offset_right = 186.0
-offset_bottom = 365.0
+offset_left = 19.0
+offset_top = 511.0
+offset_right = 393.0
+offset_bottom = 607.0
 theme_override_colors/default_color = Color(0.97859687, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 33
 text = "answer"
+
+[node name="question_description" type="RichTextLabel" parent="." unique_id=340068500]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 127.0
+offset_right = 1113.0
+offset_bottom = 244.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "question description"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
