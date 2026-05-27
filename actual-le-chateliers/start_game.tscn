@@ -35,10 +35,10 @@ text = "Le Chatelier's Principle
 
 [node name="Button" type="Button" parent="." unique_id=926817269]
 layout_mode = 0
-offset_left = 436.0
-offset_top = 385.0
-offset_right = 727.0
-offset_bottom = 486.0
+offset_left = 426.0
+offset_top = 386.0
+offset_right = 717.0
+offset_bottom = 487.0
 theme_override_colors/font_color = Color(0.08398584, 0.44609243, 0.7049566, 1)
 theme_override_font_sizes/font_size = 56
 theme_override_styles/normal = SubResource("StyleBoxFlat_8eptn")

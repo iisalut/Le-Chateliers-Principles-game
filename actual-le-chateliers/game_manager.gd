@@ -22,8 +22,10 @@ var heat_added= randf()<0.5 # boolean value that manages the heat added/ removed
 func choose_temp_qs():  # HELPER chooses a temp qs from the temp dict
 	# already starts from the a random value and then 
 	#goes into the actual rxn : enthalpy -> dict always loops through keys 
+	
 	var inner_dict=QsData.temp_qs_dict[random_select_temp]
 	for rxn in inner_dict :
+		
 		curr_qs= rxn
 		curr_enthalpy=inner_dict[rxn]
 
@@ -65,6 +67,51 @@ func display_temp(): # Displays temp labels
 	
 
 #--------------------
+
+#---vol variables and functions-----
+var random_select_vol= randi_range(0,6)
+var curr_max_vol_moles=""
+var vol_inc= 0.5<randf()
+
+
+func choose_vol_qs():
+	var inner_dict= QsData.vol_qs_dict[random_select_vol]
+	for rxn in inner_dict:
+		curr_qs=rxn
+		curr_max_vol_moles= inner_dict[rxn]
+
+func check_vol_ans(value: float) -> void:
+	if(vol_inc):
+		if curr_max_vol_moles=="right" and value>0 :
+			answer_label.text="Correct vol!"
+			score+=1
+		elif curr_max_vol_moles=="left" and value<0:
+			answer_label.text="Correct vol"
+			score+=1
+		else:
+			answer_label.text="Wrong :("
+	else:
+		if curr_max_vol_moles=="right" and value<0 :
+			answer_label.text="Correct vol!"
+			score+=1
+		elif curr_max_vol_moles=="left" and value>0:
+			answer_label.text="Correct vol"
+			score+=1
+		else:
+			answer_label.text="Wrong :("
+	score_label.text= "Score:"+str(score)
+
+func display_vol():
+	vol_inc= 0.5<randf()
+	random_select_vol= randi_range(0,6)
+	choose_vol_qs()
+	question_label.text=curr_qs
+	if (vol_inc==true):
+		question_description.text="If the volume of the reaction vessel is INCREASED, which way will the equillibrium shift ?"
+	else:
+		question_description.text="If the volume of the reaction vessel is DECREASED, which way will the equillibrium shift ?"
+
+
 func _ready():
 	display_temp()
 
@@ -73,7 +120,7 @@ func _on_submit_button_pressed() -> void: # displays answer label
 	if (random_of_3== 1):
 		check_temp_ans(slider_value)
 	elif (random_of_3==2):
-		pass #vol
+		check_vol_ans(slider_value)
 	else:
 		pass #conc
 
@@ -81,10 +128,11 @@ func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 	
 	enthalpy_label.text=""
 	question_description.text=""
+	answer_label.text=""
 	random_of_3= randi_range(1,3)
 	if (random_of_3== 1):
 		display_temp()
 	elif (random_of_3==2):
-		question_label.text="volume qs"
+		display_vol()
 	else:
 		question_label.text="conc qs"

@@ -36,6 +36,7 @@ script = ExtResource("1_kninm")
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+rotation = 0.00038971225
 color = Color(1, 1, 0.8, 1)
 
 [node name="question_label" type="RichTextLabel" parent="." unique_id=886499720]
@@ -72,9 +73,9 @@ text = "Next qs"
 clip_children = 1
 layout_mode = 0
 offset_left = 115.0
-offset_top = 406.0
+offset_top = 388.0
 offset_right = 1031.0
-offset_bottom = 432.0
+offset_bottom = 428.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kninm")
 
 [node name="TextureRect" type="TextureRect" parent="slider stuff" unique_id=76080980]
@@ -123,18 +124,18 @@ text = "Consider the following equation:"
 
 [node name="product_label" type="RichTextLabel" parent="static stuff" unique_id=1426051611]
 offset_left = 1042.0
-offset_top = 412.0
+offset_top = 394.0
 offset_right = 1158.0
-offset_bottom = 452.0
+offset_bottom = 434.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 19
 text = "Products"
 
 [node name="reactant_label" type="RichTextLabel" parent="static stuff" unique_id=486680919]
 offset_left = 13.0
-offset_top = 412.0
+offset_top = 394.0
 offset_right = 133.0
-offset_bottom = 452.0
+offset_bottom = 434.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 19
 text = "Reactants"
@@ -161,4 +162,5 @@ text = "question description"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
