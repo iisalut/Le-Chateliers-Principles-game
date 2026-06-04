@@ -16,5 +16,7 @@ var vol_qs_dict={ 0: {"N₂ (g) + 3 H₂ (g) ⇌ 2 NH₃ (g) ": "left"},
 5:{"CH4 (g) + H₂O (g) <=> CO (g) + 3 H₂ (g)": "right"},
 6:{"PCl5 (g) ⇌ PCl3 (g) + Cl2 (g)":"right"}
 }
-var finished_qs=[]
+var full_finished_qs=[]
+var temp_finished_qs=[]
+var vol_finished_qs=[]
 	
