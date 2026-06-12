@@ -9,6 +9,24 @@ extends Control
 @onready var answer_label: RichTextLabel = $answer_label
 @onready var score_label: RichTextLabel = $"static stuff/score_label"
 @onready var question_description: RichTextLabel = $question_description
+@onready var line_edit: LineEdit = $LineEdit
+
+#--- conc dict-------
+var conc_num1=0
+var conc_num2=0
+var conc_num3=0
+var conc_num4=0
+
+var conc_qs_dict={ 
+		0: {str(conc_num1)+" N₂(g) + "+ str(conc_num2)+ " 3 H₂(g) <=> "+str(conc_num3)+ " 2 NH₃ (g)": 275.0}, 
+		1:{str(conc_num1)+" CH₃ COOH(aq) + "+str(conc_num2)+" C₂H5OH(aq) <=> "+str(conc_num3)+" CH₃ COOC₂H5(aq) + "+str(conc_num4)+" H₂O(l)": 4.0}, 
+		2:{str(conc_num1)+" N₂O4(g) <=> "+str(conc_num2)+" 2 NO₂(g)": 0.0046}, 
+		3:{str(conc_num1)+"H₂(g) + "+str(conc_num2)+" I₂(g) <=> "+str(conc_num3)+" 2 HI(g)":54.0}, 
+		4:{str(conc_num1)+" 2 SO₂(g) + "+str(conc_num2)+" O₂(g) <=> "+str(conc_num3)+" 2 SO₃(g)":4.3 }, # FIX 3: Added pow(conc_num1, 2) to match 2 SO₂
+		5:{str(conc_num1)+" PCl5(g) <=> "+str(conc_num2)+" PCl3(g) + "+str(conc_num3)+" Cl₂(g)": 0.042}, 
+		6:{str(conc_num1)+"CO(g) + "+str(conc_num2)+" H₂O(g) <=> "+str(conc_num3)+" CO₂(g) + "+str(conc_num4)+" H₂(g)":1.0} 
+	}
+#--------------------------
 
 var score=0 # rn bug if player click submit button will inc :( fix later
 var qs_type=1 # first qs always temp BUT keeps track of which qs type (temp,vol,conc)
@@ -23,12 +41,13 @@ var can_temp_activate= true
 func choose_temp_qs():  # HELPER chooses a temp qs from the temp dict
 	# already starts from the a random value and then 
 	#goes into the actual rxn : enthalpy -> dict always loops through keys 
-	
+	random_select_temp= randi_range(0,5)
 	var inner_dict=QsData.temp_qs_dict[random_select_temp]
 	for rxn in inner_dict :
 		
 		curr_qs= rxn
 		curr_enthalpy=inner_dict[rxn]
+	print("choosing new temp qs")
 
 func check_temp_ans(value: float) -> void: # HELPER checks temp answers
 	if(heat_added):
@@ -54,8 +73,8 @@ func check_temp_ans(value: float) -> void: # HELPER checks temp answers
 			answer_label.text="correct !"
 			score+=1
 	score_label.text= "Score:"+str(score)
+	print("just checked answer and updated score")
 func display_temp(): # Displays temp labels
-	random_select_temp= randi_range(0,5)
 	
 	choose_temp_qs() # uses helper
 	validate_qs(curr_qs,qs_type)
@@ -66,7 +85,9 @@ func display_temp(): # Displays temp labels
 		question_description.text="If the temperature of the system is increased, how will the equilibrium shift?"
 	else:
 		question_description.text="If the system is cooled down, how will the equilibrium shift?"
-	
+		
+	print(" description added for temp  qs")
+
 
 #--------------------
 
@@ -78,10 +99,12 @@ var can_vol_activate= true
 
 
 func choose_vol_qs():
+	random_select_vol= randi_range(0,6)
 	var inner_dict= QsData.vol_qs_dict[random_select_vol]
 	for rxn in inner_dict:
 		curr_qs=rxn
 		curr_max_vol_moles= inner_dict[rxn]
+	print("choosing new vol qs")
 
 func check_vol_ans(value: float) -> void:
 	if(vol_inc):
@@ -103,19 +126,91 @@ func check_vol_ans(value: float) -> void:
 		else:
 			answer_label.text="Wrong :("
 	score_label.text= "Score:"+str(score)
+	print("just checked answers and updated score")
 
 func display_vol():
-	vol_inc= 0.5<randf()
-	random_select_vol= randi_range(0,6)
 	choose_vol_qs()
 	validate_qs(curr_qs,qs_type)
 	question_label.text=curr_qs
+	vol_inc= 0.5<randf()
 	if (vol_inc==true):
 		question_description.text="If the volume of the reaction vessel is INCREASED, which way will the equillibrium shift ?"
 	else:
 		question_description.text="If the volume of the reaction vessel is DECREASED, which way will the equillibrium shift ?"
+		print(" description added for vol  qs")
+#-------------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------------------
+#---conc variables and functions-----
+var random_select_conc=randi_range(0,6)
+var curr_Kc=""
+var corr_Qc=0
+
+var can_conc_activate= true
+func correct_Qc_calculation(): # need to update this for every added conc qs
+	match random_select_conc:
+		0: 
+			corr_Qc = (pow(conc_num3, 2) / (conc_num1 * pow(conc_num2, 3)))
+		1:
+			corr_Qc = ((conc_num3 * conc_num4) / (conc_num1 * conc_num2))
+		2:
+			corr_Qc = (pow(conc_num2, 2) / conc_num1)
+		3:
+			corr_Qc = (pow(conc_num3, 2) / (conc_num1 * conc_num2))
+		4:
+			corr_Qc = (pow(conc_num3, 2) / (pow(conc_num1, 2) * conc_num2))
+		5:
+			corr_Qc = ((conc_num3 * conc_num2) / conc_num1)
+		6:
+			corr_Qc = ((QsData.conc_num3 * QsData.conc_num4) / (QsData.conc_num1 * QsData.conc_num2))
+
+func choose_conc_qs():
+	random_select_conc=randi_range(0,6)
+	conc_num1=snapped(randf_range(0.10,10.0),0.001)
+	conc_num2=snapped(randf_range(0.10,10.0),0.001)
+	conc_num3=snapped(randf_range(0.10,10.0),0.001)
+	conc_num4=snapped(randf_range(0.10,10.0),0.001)
+	var inner_dict=conc_qs_dict[random_select_conc]
+	for rxn in inner_dict:
+		curr_qs=rxn
+		curr_Kc= inner_dict[rxn]
+	correct_Qc_calculation()
+	print("choosing new conc qs")
+	print(" num1: "+str(conc_num1)+" num2: "+str(conc_num2)+" num3: "+str(conc_num3)+" num4: "+str(conc_num4))
+	print("current Kc "+str(curr_Kc))
+	print("correct Qc answer will be "+str(snapped(corr_Qc,0.001)))
+	
+func check_conc_ans( user_Qc: String,value: float):
+	var float_Qc=snapped(float(user_Qc),0.001)
+	if(corr_Qc>curr_Kc):
+		print("right now"+str(corr_Qc)+" > "+str(curr_Kc))
+		if((corr_Qc==float_Qc) and (value<0)):
+			answer_label.text="correct ! both value"
+			score+=1
+		elif(corr_Qc==float_Qc):
+			answer_label.text="slider value wrong"
+		elif(value<0):
+			answer_label.text="Qc value wrong"
+		else:
+			answer_label.text="Slider and Qc values wrong"
+	else:
+		if(corr_Qc<curr_Kc):
+			print("right now"+str(corr_Qc)+" < "+str(curr_Kc))
+			if((corr_Qc==float_Qc) and (value>0)):
+				answer_label.text="correct ! both value"
+				score+=1
+			elif(corr_Qc==float_Qc):
+				answer_label.text="slider value wrong"
+			elif(value>0):
+				answer_label.text="Qc value wrong"
+			else:
+				answer_label.text="Slider and Qc values wrong"	
+	
+func display_conc():
+	choose_conc_qs()
+	validate_qs(curr_qs,qs_type)
+	question_label.text=curr_qs
+
+#----------------------------------------
 func validate_qs(current_qs, question_type): 
 	# takes curr_qs and question_type figures out what type of question.
 	# if the chosen qs not in the finished_dict then that is the final chosen question and it is added to the finished_dict
@@ -128,14 +223,18 @@ func validate_qs(current_qs, question_type):
 					QsData.temp_finished_qs.append(curr_qs)
 					QsData.full_finished_qs.append(curr_qs)
 					print(" finished_temp: "+ str(QsData.full_finished_qs))
+					print("validate temp just ran")
 					if QsData.temp_finished_qs.size()==6: # need to update this num everytime change num qs
 						can_temp_activate=false
+						print("all temp qs over")
 					break
 				else:
 					if QsData.temp_finished_qs.size()==6: # need to update this num everytime change num qs
 						can_temp_activate=false
+						print("all temp qs over")
 						break
 					choose_temp_qs()
+					print("need to find another question")
 					current_qs=curr_qs
 		
 		elif question_type==2 and can_vol_activate :
@@ -145,23 +244,43 @@ func validate_qs(current_qs, question_type):
 					QsData.vol_finished_qs.append(curr_qs)
 					QsData.full_finished_qs.append(curr_qs)
 					print(" finished_vol: "+ str(QsData.full_finished_qs))
+					print("validate vol just ran")
 					if QsData.vol_finished_qs.size()==7: # need to update this num everytime change num qs
 						can_vol_activate=false
+						print("all vol qs over")
 					break
 				else:
 					if QsData.vol_finished_qs.size()==7: # need to update this num everytime change num qs
 						can_vol_activate=false
+						print("all vol qs over")
 						break
 					choose_vol_qs()
+					print("need to find another question")
 					current_qs=curr_qs
 		else:
-			pass
+			while true:
+				if(!QsData.conc_finished_qs.has(current_qs)):
+					curr_qs=current_qs
+					QsData.conc_finished_qs.append(curr_qs)
+					QsData.full_finished_qs.append(curr_qs)
+					print(" finished_conc: "+ str(QsData.full_finished_qs))
+					print("validate conc just ran")
+					if QsData.conc_finished_qs.size()==7: # need to update this num everytime change num qs
+						can_conc_activate=false
+						print("all conc qs over")
+					break
+				else:
+					if QsData.conc_finished_qs.size()==7: # need to update this num everytime change num qs
+						can_conc_activate=false
+						print("all conc qs over")
+						break
+					choose_conc_qs()
+					print("need to find another question")
+					current_qs=curr_qs
 
 func _ready():
 	display_temp()
-	
-
-
+	print(" num1: "+str(conc_num1)+" num2: "+str(conc_num2)+" num3: "+str(conc_num3)+" num4: "+str(conc_num4))
 func _on_submit_button_pressed() -> void: # displays answer label
 	var slider_value= slider.value
 	if (qs_type== 1):
@@ -169,21 +288,24 @@ func _on_submit_button_pressed() -> void: # displays answer label
 	elif (qs_type==2):
 		check_vol_ans(slider_value)
 	else:
-		pass #conc
+		check_conc_ans(line_edit.text,slider_value)
 
 func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 	
 	enthalpy_label.text=""
 	question_description.text=""
 	answer_label.text=""
+	line_edit.text=" "
 	qs_type= randi_range(1,3)
 
-	#if (qs_type== 1 ):
-	#	display_temp()
-	#elif (qs_type==2):
-	#	display_vol()
-	#else:
-	#	question_label.text="conc qs"
+	print("next qs button pressed")
+	if not can_temp_activate and not can_vol_activate and not can_conc_activate:
+		question_label.text = "Game Over! All questions completed."
+		enthalpy_label.text = ""
+		question_description.text = ""
+		answer_label.text = ""
+		return
+		
 	
 	match qs_type:	
 		1: 
@@ -197,5 +319,7 @@ func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 			else:
 				_on_button_pressed()
 		3:
-			pass
-			
+			if (can_conc_activate):
+				display_conc()
+			else:
+				_on_button_pressed()

@@ -23,6 +23,9 @@ gradient = SubResource("Gradient_k7kv1")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgkws"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7kv1"]
+bg_color = Color(0.98779136, 0.82454944, 0.7354357, 1)
+
 [node name="quiz" type="Control" unique_id=987375832]
 layout_mode = 3
 anchors_preset = 15
@@ -43,8 +46,8 @@ color = Color(1, 1, 0.8, 1)
 layout_mode = 0
 offset_left = 139.0
 offset_top = 75.0
-offset_right = 715.0
-offset_bottom = 127.0
+offset_right = 837.0
+offset_bottom = 206.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
@@ -52,9 +55,9 @@ text = "questions"
 
 [node name="enthalpy_label" type="RichTextLabel" parent="." unique_id=1112398362]
 layout_mode = 0
-offset_left = 806.0
+offset_left = 849.0
 offset_top = 75.0
-offset_right = 1137.0
+offset_right = 1180.0
 offset_bottom = 139.0
 theme_override_colors/default_color = Color(0.9129348, 0, 0.20002878, 1)
 theme_override_font_sizes/normal_font_size = 32
@@ -140,6 +143,15 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 19
 text = "Reactants"
 
+[node name="Qc value" type="RichTextLabel" parent="static stuff" unique_id=959320380]
+offset_left = 918.0
+offset_top = 282.0
+offset_right = 1142.0
+offset_bottom = 322.0
+theme_override_colors/default_color = Color(0.12041845, 0.12041845, 0.12041845, 1)
+theme_override_font_sizes/normal_font_size = 21
+text = "Enter Your Qc Value"
+
 [node name="answer_label" type="RichTextLabel" parent="." unique_id=1630171024]
 layout_mode = 0
 offset_left = 19.0
@@ -153,12 +165,21 @@ text = "answer"
 [node name="question_description" type="RichTextLabel" parent="." unique_id=340068500]
 layout_mode = 0
 offset_left = 139.0
-offset_top = 127.0
+offset_top = 139.0
 offset_right = 1113.0
-offset_bottom = 244.0
+offset_bottom = 256.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 32
 text = "question description"
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1496249676]
+layout_mode = 0
+offset_left = 931.0
+offset_top = 322.0
+offset_right = 1108.0
+offset_bottom = 367.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_k7kv1")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]

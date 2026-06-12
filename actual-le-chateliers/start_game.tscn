@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dw6w1h0u8lc0s"]
 
+[ext_resource type="Script" uid="uid://ctlbs885ei0rr" path="res://start_game.gd" id="1_lhive"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eptn"]
 bg_color = Color(0.98624766, 0.56294864, 0.6908011, 1)
 corner_radius_top_left = 10
@@ -8,13 +10,14 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[node name="start game" type="Control" unique_id=2050876391]
+[node name="]\\" type="Control" unique_id=2050876391]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_lhive")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1128001262]
 layout_mode = 0
@@ -43,3 +46,5 @@ theme_override_colors/font_color = Color(0.08398584, 0.44609243, 0.7049566, 1)
 theme_override_font_sizes/font_size = 56
 theme_override_styles/normal = SubResource("StyleBoxFlat_8eptn")
 text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
