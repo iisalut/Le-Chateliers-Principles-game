@@ -44,31 +44,30 @@ color = Color(1, 1, 0.8, 1)
 
 [node name="question_label" type="RichTextLabel" parent="." unique_id=886499720]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 75.0
-offset_right = 837.0
-offset_bottom = 206.0
+offset_left = 55.0
+offset_top = 88.0
+offset_right = 1041.0
+offset_bottom = 163.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "questions"
 
 [node name="enthalpy_label" type="RichTextLabel" parent="." unique_id=1112398362]
 layout_mode = 0
-offset_left = 849.0
-offset_top = 75.0
-offset_right = 1180.0
-offset_bottom = 139.0
+offset_left = 764.0
+offset_top = 88.0
+offset_right = 1095.0
+offset_bottom = 152.0
 theme_override_colors/default_color = Color(0.9129348, 0, 0.20002878, 1)
 theme_override_font_sizes/normal_font_size = 32
-text = "Enthalpy:"
 
 [node name="Button" type="Button" parent="." unique_id=317094057]
 layout_mode = 0
-offset_left = 441.0
-offset_top = 526.0
-offset_right = 687.0
-offset_bottom = 607.0
+offset_left = 410.0
+offset_top = 509.0
+offset_right = 656.0
+offset_bottom = 590.0
 theme_override_font_sizes/font_size = 30
 text = "Next qs"
 
@@ -98,28 +97,28 @@ step = 10.0
 
 [node name="submit_button" type="Button" parent="." unique_id=116318507]
 layout_mode = 0
-offset_left = 791.0
-offset_top = 526.0
-offset_right = 989.0
-offset_bottom = 584.0
+offset_left = 755.0
+offset_top = 509.0
+offset_right = 962.0
+offset_bottom = 590.0
 theme_override_font_sizes/font_size = 24
 text = "Submit answer"
 
 [node name="static stuff" type="Node" parent="." unique_id=1215765184]
 
 [node name="score_label" type="RichTextLabel" parent="static stuff" unique_id=423988060]
-offset_left = 19.0
-offset_top = 21.0
-offset_right = 214.0
-offset_bottom = 61.0
+offset_left = 13.0
+offset_top = 564.0
+offset_right = 410.0
+offset_bottom = 637.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/normal_font_size = 33
 text = "Score: "
 
 [node name="qs_title" type="RichTextLabel" parent="static stuff" unique_id=1490217065]
-offset_left = 139.0
+offset_left = 55.0
 offset_top = 31.0
-offset_right = 666.0
+offset_right = 582.0
 offset_bottom = 87.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 32
@@ -143,45 +142,53 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 19
 text = "Reactants"
 
-[node name="Qc value" type="RichTextLabel" parent="static stuff" unique_id=959320380]
-offset_left = 918.0
-offset_top = 282.0
-offset_right = 1142.0
-offset_bottom = 322.0
+[node name="Qc value description" type="RichTextLabel" parent="static stuff" unique_id=959320380]
+offset_left = 933.0
+offset_top = 256.0
+offset_right = 1149.0
+offset_bottom = 296.0
 theme_override_colors/default_color = Color(0.12041845, 0.12041845, 0.12041845, 1)
 theme_override_font_sizes/normal_font_size = 21
-text = "Enter Your Qc Value"
 
 [node name="answer_label" type="RichTextLabel" parent="." unique_id=1630171024]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 511.0
-offset_right = 393.0
-offset_bottom = 607.0
+offset_left = 13.0
+offset_top = 469.0
+offset_right = 387.0
+offset_bottom = 565.0
 theme_override_colors/default_color = Color(0.97859687, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 33
 text = "answer"
 
 [node name="question_description" type="RichTextLabel" parent="." unique_id=340068500]
 layout_mode = 0
-offset_left = 139.0
+offset_left = 55.0
 offset_top = 139.0
-offset_right = 1113.0
+offset_right = 1029.0
 offset_bottom = 256.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 29
 text = "question description"
 
 [node name="LineEdit" type="LineEdit" parent="." unique_id=1496249676]
 layout_mode = 0
-offset_left = 931.0
-offset_top = 322.0
-offset_right = 1108.0
-offset_bottom = 367.0
+offset_left = 933.0
+offset_top = 296.0
+offset_right = 1110.0
+offset_bottom = 341.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_k7kv1")
 
+[node name="Kc label" type="RichTextLabel" parent="." unique_id=493740670]
+layout_mode = 0
+offset_left = 860.0
+offset_top = 87.0
+offset_right = 1126.0
+offset_bottom = 144.0
+theme_override_colors/default_color = Color(0.84846675, 0.23505858, 0.20952809, 1)
+theme_override_font_sizes/normal_font_size = 32
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
+[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]

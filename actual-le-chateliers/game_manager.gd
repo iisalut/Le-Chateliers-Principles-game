@@ -10,6 +10,10 @@ extends Control
 @onready var score_label: RichTextLabel = $"static stuff/score_label"
 @onready var question_description: RichTextLabel = $question_description
 @onready var line_edit: LineEdit = $LineEdit
+@onready var kc_label: RichTextLabel = $"Kc label"
+@onready var qc_value_description: RichTextLabel = $"static stuff/Qc value description"
+
+
 
 #--- conc dict-------
 var conc_num1=0
@@ -17,15 +21,6 @@ var conc_num2=0
 var conc_num3=0
 var conc_num4=0
 
-var conc_qs_dict={ 
-		0: {str(conc_num1)+" N₂(g) + "+ str(conc_num2)+ " 3 H₂(g) <=> "+str(conc_num3)+ " 2 NH₃ (g)": 275.0}, 
-		1:{str(conc_num1)+" CH₃ COOH(aq) + "+str(conc_num2)+" C₂H5OH(aq) <=> "+str(conc_num3)+" CH₃ COOC₂H5(aq) + "+str(conc_num4)+" H₂O(l)": 4.0}, 
-		2:{str(conc_num1)+" N₂O4(g) <=> "+str(conc_num2)+" 2 NO₂(g)": 0.0046}, 
-		3:{str(conc_num1)+"H₂(g) + "+str(conc_num2)+" I₂(g) <=> "+str(conc_num3)+" 2 HI(g)":54.0}, 
-		4:{str(conc_num1)+" 2 SO₂(g) + "+str(conc_num2)+" O₂(g) <=> "+str(conc_num3)+" 2 SO₃(g)":4.3 }, # FIX 3: Added pow(conc_num1, 2) to match 2 SO₂
-		5:{str(conc_num1)+" PCl5(g) <=> "+str(conc_num2)+" PCl3(g) + "+str(conc_num3)+" Cl₂(g)": 0.042}, 
-		6:{str(conc_num1)+"CO(g) + "+str(conc_num2)+" H₂O(g) <=> "+str(conc_num3)+" CO₂(g) + "+str(conc_num4)+" H₂(g)":1.0} 
-	}
 #--------------------------
 
 var score=0 # rn bug if player click submit button will inc :( fix later
@@ -151,7 +146,7 @@ func correct_Qc_calculation(): # need to update this for every added conc qs
 		0: 
 			corr_Qc = (pow(conc_num3, 2) / (conc_num1 * pow(conc_num2, 3)))
 		1:
-			corr_Qc = ((conc_num3 * conc_num4) / (conc_num1 * conc_num2))
+			corr_Qc = (conc_num3 / (conc_num1 * conc_num2))
 		2:
 			corr_Qc = (pow(conc_num2, 2) / conc_num1)
 		3:
@@ -161,14 +156,27 @@ func correct_Qc_calculation(): # need to update this for every added conc qs
 		5:
 			corr_Qc = ((conc_num3 * conc_num2) / conc_num1)
 		6:
-			corr_Qc = ((QsData.conc_num3 * QsData.conc_num4) / (QsData.conc_num1 * QsData.conc_num2))
+			corr_Qc = ((conc_num3 * conc_num4) / (conc_num1 * conc_num2))
 
-func choose_conc_qs():
+func choose_conc_qs():  # the conc dictionary is in here
 	random_select_conc=randi_range(0,6)
 	conc_num1=snapped(randf_range(0.10,10.0),0.001)
 	conc_num2=snapped(randf_range(0.10,10.0),0.001)
 	conc_num3=snapped(randf_range(0.10,10.0),0.001)
 	conc_num4=snapped(randf_range(0.10,10.0),0.001)
+	
+	
+	var conc_qs_dict={ 
+		0: {str(conc_num1)+"M N₂ + "+ str(conc_num2)+ "M 3 H₂ <=> "+str(conc_num3)+ "M 2 NH₃": 275.0}, 
+		1:{str(conc_num1)+"M CO + "+str(conc_num2)+"M Cl₂ <=> "+str(conc_num3)+"M COCl₂": 5.0}, 
+		2:{str(conc_num1)+"M N₂O4 <=> "+str(conc_num2)+"M 2 NO₂": 0.0046}, 
+		3:{str(conc_num1)+"M H₂ + "+str(conc_num2)+"M I₂ <=> "+str(conc_num3)+"M HI":54.0}, 
+		4:{str(conc_num1)+"M 2 SO₂ + "+str(conc_num2)+"M O₂ <=> "+str(conc_num3)+"M 2 SO₃":4.3 }, # FIX 3: Added pow(conc_num1, 2) to match 2 SO₂
+		5:{str(conc_num1)+"M PCl5 <=> "+str(conc_num2)+"M PCl3 + "+str(conc_num3)+"M Cl₂": 0.042}, 
+		6:{str(conc_num1)+"M CO + "+str(conc_num2)+"M H₂O <=> "+str(conc_num3)+"M CO₂ + "+str(conc_num4)+"M H₂":1.0} 
+	}
+	
+	
 	var inner_dict=conc_qs_dict[random_select_conc]
 	for rxn in inner_dict:
 		curr_qs=rxn
@@ -181,6 +189,7 @@ func choose_conc_qs():
 	
 func check_conc_ans( user_Qc: String,value: float):
 	var float_Qc=snapped(float(user_Qc),0.001)
+	corr_Qc=snapped(corr_Qc,0.001)
 	if(corr_Qc>curr_Kc):
 		print("right now"+str(corr_Qc)+" > "+str(curr_Kc))
 		if((corr_Qc==float_Qc) and (value<0)):
@@ -208,8 +217,11 @@ func check_conc_ans( user_Qc: String,value: float):
 func display_conc():
 	choose_conc_qs()
 	validate_qs(curr_qs,qs_type)
+	line_edit.show()
 	question_label.text=curr_qs
-
+	kc_label.text="Kc value: "+str(curr_Kc)
+	question_description.text="Calculate Qc and predict how the equilibrium will shift based on the Qc and Kc value"
+	qc_value_description.text="Enter Qc value"
 #----------------------------------------
 func validate_qs(current_qs, question_type): 
 	# takes curr_qs and question_type figures out what type of question.
@@ -279,8 +291,10 @@ func validate_qs(current_qs, question_type):
 					current_qs=curr_qs
 
 func _ready():
+	line_edit.hide()
 	display_temp()
 	print(" num1: "+str(conc_num1)+" num2: "+str(conc_num2)+" num3: "+str(conc_num3)+" num4: "+str(conc_num4))
+
 func _on_submit_button_pressed() -> void: # displays answer label
 	var slider_value= slider.value
 	if (qs_type== 1):
@@ -292,17 +306,21 @@ func _on_submit_button_pressed() -> void: # displays answer label
 
 func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 	
+	line_edit.hide()
 	enthalpy_label.text=""
-	question_description.text=""
+	question_description.text=" "
 	answer_label.text=""
 	line_edit.text=" "
+	kc_label.text=" "
+	qc_value_description.text=" "
 	qs_type= randi_range(1,3)
 
 	print("next qs button pressed")
 	if not can_temp_activate and not can_vol_activate and not can_conc_activate:
 		question_label.text = "Game Over! All questions completed."
 		enthalpy_label.text = ""
-		question_description.text = ""
+		question_description.text = " "
+		qc_value_description.text=" "
 		answer_label.text = ""
 		return
 		
