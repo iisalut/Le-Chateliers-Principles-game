@@ -23,7 +23,7 @@ var conc_num4=0
 
 #--------------------------
 
-var score=0 # rn bug if player click submit button will inc :( fix later
+var score=0 
 var qs_type=1 # first qs always temp BUT keeps track of which qs type (temp,vol,conc)
 var curr_qs="" # current question
 
@@ -167,13 +167,13 @@ func choose_conc_qs():  # the conc dictionary is in here
 	
 	
 	var conc_qs_dict={ 
-		0: {str(conc_num1)+"M N₂ + "+ str(conc_num2)+ "M 3 H₂ <=> "+str(conc_num3)+ "M 2 NH₃": 275.0}, 
-		1:{str(conc_num1)+"M CO + "+str(conc_num2)+"M Cl₂ <=> "+str(conc_num3)+"M COCl₂": 5.0}, 
-		2:{str(conc_num1)+"M N₂O4 <=> "+str(conc_num2)+"M 2 NO₂": 0.0046}, 
-		3:{str(conc_num1)+"M H₂ + "+str(conc_num2)+"M I₂ <=> "+str(conc_num3)+"M HI":54.0}, 
-		4:{str(conc_num1)+"M 2 SO₂ + "+str(conc_num2)+"M O₂ <=> "+str(conc_num3)+"M 2 SO₃":4.3 }, # FIX 3: Added pow(conc_num1, 2) to match 2 SO₂
-		5:{str(conc_num1)+"M PCl5 <=> "+str(conc_num2)+"M PCl3 + "+str(conc_num3)+"M Cl₂": 0.042}, 
-		6:{str(conc_num1)+"M CO + "+str(conc_num2)+"M H₂O <=> "+str(conc_num3)+"M CO₂ + "+str(conc_num4)+"M H₂":1.0} 
+		0: {str(conc_num1)+"M N₂ + "+ str(conc_num2)+ "M 3 H₂ ⇌ "+str(conc_num3)+ "M 2 NH₃": 275.0}, 
+		1:{str(conc_num1)+"M CO + "+str(conc_num2)+"M Cl₂ ⇌ "+str(conc_num3)+"M COCl₂": 5.0}, 
+		2:{str(conc_num1)+"M N₂O₄ ⇌ "+str(conc_num2)+"M 2 NO₂": 0.0046}, 
+		3:{str(conc_num1)+"M H₂ + "+str(conc_num2)+"M I₂ ⇌ "+str(conc_num3)+"M 2 HI":54.0}, 
+		4:{str(conc_num1)+"M 2 SO₂ + "+str(conc_num2)+"M O₂ ⇌ "+str(conc_num3)+"M 2 SO₃":4.3 }, # FIX 3: Added pow(conc_num1, 2) to match 2 SO₂
+		5:{str(conc_num1)+"M PCl₅ ⇌ "+str(conc_num2)+"M PCl₃ + "+str(conc_num3)+"M Cl₂": 0.042}, 
+		6:{str(conc_num1)+"M CO + "+str(conc_num2)+"M H₂O ⇌ "+str(conc_num3)+"M CO₂ + "+str(conc_num4)+"M H₂":1.0} 
 	}
 	
 	
@@ -213,6 +213,7 @@ func check_conc_ans( user_Qc: String,value: float):
 				answer_label.text="Qc value wrong"
 			else:
 				answer_label.text="Slider and Qc values wrong"	
+	score_label.text= "Score:"+str(score)
 	
 func display_conc():
 	choose_conc_qs()

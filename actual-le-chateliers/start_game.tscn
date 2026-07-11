@@ -27,13 +27,13 @@ color = Color(1, 1, 0.8, 1)
 
 [node name="Label" type="Label" parent="." unique_id=917660890]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 81.0
-offset_right = 1066.0
-offset_bottom = 330.0
+offset_left = 72.0
+offset_top = 82.0
+offset_right = 1091.0
+offset_bottom = 331.0
 theme_override_colors/font_color = Color(2.7434528e-06, 0.41918835, 0.53147775, 1)
 theme_override_font_sizes/font_size = 89
-text = "Le Chatelier's Principle
+text = "Le Chatelier's Principles
                Game"
 
 [node name="Button" type="Button" parent="." unique_id=926817269]
