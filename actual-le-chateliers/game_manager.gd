@@ -185,14 +185,29 @@ func choose_conc_qs():  # the conc dictionary is in here
 	print("choosing new conc qs")
 	print(" num1: "+str(conc_num1)+" num2: "+str(conc_num2)+" num3: "+str(conc_num3)+" num4: "+str(conc_num4))
 	print("current Kc "+str(curr_Kc))
-	print("correct Qc answer will be "+str(snapped(corr_Qc,0.001)))
+
+var corr_Qc_string_final=""	
+func sig_fig_fixer(corr_Qc):
+	var corr_Qc_string =str(corr_Qc)
+	if corr_Qc_string.get_slice(".",0).length()==1:
+		if corr_Qc_string.get_slice(".",0)=="0":
+			corr_Qc_string_final=corr_Qc_string.substr(0,5)
+		else:
+			corr_Qc_string_final=corr_Qc_string.substr(0,4)
+	else:
+		corr_Qc_string_final=corr_Qc_string.substr(0,4)
+		
+	print("correct Qc answer will be "+corr_Qc_string_final)	
+	return corr_Qc_string_final	
 	
+		
 func check_conc_ans( user_Qc: String,value: float):
-	var float_Qc=snapped(float(user_Qc),0.001)
-	corr_Qc=snapped(corr_Qc,0.001)
+	var float_Qc=snapped(float(user_Qc),0.0001)
+	corr_Qc=snapped(corr_Qc,0.0001)
+	sig_fig_fixer(corr_Qc)
 	if(corr_Qc>curr_Kc):
-		print("right now"+str(corr_Qc)+" > "+str(curr_Kc))
-		if((corr_Qc==float_Qc) and (value<0)):
+		print("right now"+corr_Qc_string_final+" > "+str(curr_Kc))
+		if((corr_Qc_string_final==str(float_Qc)) and (value<0)):
 			answer_label.text="correct ! both value"
 			score+=1
 		elif(corr_Qc==float_Qc):
@@ -203,8 +218,8 @@ func check_conc_ans( user_Qc: String,value: float):
 			answer_label.text="Slider and Qc values wrong"
 	else:
 		if(corr_Qc<curr_Kc):
-			print("right now"+str(corr_Qc)+" < "+str(curr_Kc))
-			if((corr_Qc==float_Qc) and (value>0)):
+			print("right now"+corr_Qc_string_final+" < "+str(curr_Kc))
+			if((corr_Qc_string_final==str(float_Qc)) and (value>0)):
 				answer_label.text="correct ! both value"
 				score+=1
 			elif(corr_Qc==float_Qc):
