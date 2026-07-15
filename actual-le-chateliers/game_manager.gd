@@ -188,6 +188,7 @@ func choose_conc_qs():  # the conc dictionary is in here
 
 var corr_Qc_string_final=""	
 func sig_fig_fixer(corr_Qc):
+	corr_Qc=snapped(corr_Qc,0.001)
 	var corr_Qc_string =str(corr_Qc)
 	if corr_Qc_string.get_slice(".",0).length()==1:
 		if corr_Qc_string.get_slice(".",0)=="0":
@@ -210,7 +211,7 @@ func check_conc_ans( user_Qc: String,value: float):
 		if((corr_Qc_string_final==str(float_Qc)) and (value<0)):
 			answer_label.text="correct ! both value"
 			score+=1
-		elif(corr_Qc==float_Qc):
+		elif(corr_Qc_string_final==str(float_Qc)):
 			answer_label.text="slider value wrong"
 		elif(value<0):
 			answer_label.text="Qc value wrong"
@@ -222,7 +223,7 @@ func check_conc_ans( user_Qc: String,value: float):
 			if((corr_Qc_string_final==str(float_Qc)) and (value>0)):
 				answer_label.text="correct ! both value"
 				score+=1
-			elif(corr_Qc==float_Qc):
+			elif(corr_Qc_string_final==str(float_Qc)):
 				answer_label.text="slider value wrong"
 			elif(value>0):
 				answer_label.text="Qc value wrong"
