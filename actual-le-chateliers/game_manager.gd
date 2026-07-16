@@ -213,33 +213,42 @@ func sig_fig_fixer(corr_Qc, sig_fig_num: int):
 		if valid_sig_figs_counter< sig_fig_num:
 			if first_sf_valid==false and (i=="0" or i=="."):
 				corr_Qc_string_final+=i
+				print("current Qc string:"+corr_Qc_string_final)
 			else:
 				first_sf_valid=true
+				print("no more trailing zero's ! valid sf activated")
 				valid_sig_figs_counter+=1
 				corr_Qc_string_final+=i
+				print("current Qc string:"+corr_Qc_string_final)
 				adjacent_element= corr_Qc_string_form[current_index+1]
 		current_index+=1
+		print("sf iteration: "+str(valid_sig_figs_counter))
 	corr_Qc_string_final+=adjacent_element
-		
+	print("before rounding number:"+corr_Qc_string_final)	
 	#rounding part----
-	var actual_final_ans_qc=0.0
+	var actual_final_ans_qc
 	var splice_length= 	(corr_Qc_string_final.get_slice(".",1)).length()
+	print("splice length:"+ str(splice_length))
 	var base_number = float(corr_Qc_string_final)
+	print("base_number:"+ str(base_number))
 	var multiplier = pow(10, splice_length - 1)
+	print("multiplier:"+ str(multiplier))
 	var shifted_number = base_number * multiplier
+	print("shifted_number:"+ str(shifted_number))
 	actual_final_ans_qc = floor(shifted_number + 0.5)
-	
+	print("actual_final_ans_qc"+ str(actual_final_ans_qc))
+	return actual_final_ans_qc
 
 func check_conc_ans( user_Qc: String,value: float):
 	var float_Qc=float(user_Qc)
-	corr_Qc=snapped(corr_Qc,0.00001)
-	sig_fig_fixer(corr_Qc,3)
+	corr_Qc=snapped(corr_Qc,0.000001)
+	var final_corr_Qc=sig_fig_fixer(corr_Qc,3)
 	if(corr_Qc>curr_Kc):
-		print("right now"+str(actual_final_ans_qc)+" > "+str(curr_Kc))
-		if((actual_final_ans_qc==float_Qc) and (value<0)):
+		print("right now"+str(final_corr_Qc)+" > "+str(curr_Kc))
+		if((final_corr_Qc==float_Qc) and (value<0)):
 			answer_label.text="correct ! both value"
 			score+=1
-		elif(actual_final_ans_qc==float_Qc):
+		elif(final_corr_Qc==float_Qc):
 			answer_label.text="slider value wrong"
 		elif(value<0):
 			answer_label.text="Qc value wrong"
@@ -247,11 +256,11 @@ func check_conc_ans( user_Qc: String,value: float):
 			answer_label.text="Slider and Qc values wrong"
 	else:
 		if(corr_Qc<curr_Kc):
-			print("right now"+str(actual_final_ans_qc)+" < "+str(curr_Kc))
-			if((actual_final_ans_qc==float_Qc) and (value>0)):
+			print("right now"+str(final_corr_Qc)+" < "+str(curr_Kc))
+			if((final_corr_Qc==float_Qc) and (value>0)):
 				answer_label.text="correct ! both value"
 				score+=1
-			elif(actual_final_ans_qc==str(float_Qc)):
+			elif(final_corr_Qc==float_Qc):
 				answer_label.text="slider value wrong"
 			elif(value>0):
 				answer_label.text="Qc value wrong"
