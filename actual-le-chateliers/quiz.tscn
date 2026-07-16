@@ -188,6 +188,6 @@ theme_override_colors/default_color = Color(0.84846675, 0.23505858, 0.20952809, 
 theme_override_font_sizes/normal_font_size = 32
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]

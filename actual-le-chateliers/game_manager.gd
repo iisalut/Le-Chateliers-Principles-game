@@ -189,19 +189,6 @@ func choose_conc_qs():  # the conc dictionary is in here
 
 var actual_final_ans_qc=0.0
 func sig_fig_fixer(corr_Qc, sig_fig_num: int):
-	
-	#corr_Qc=snapped(corr_Qc,0.001)
-	#var corr_Qc_string =str(corr_Qc)
-	#if corr_Qc_string.get_slice(".",0).length()==1:
-		#if corr_Qc_string.get_slice(".",0)=="0":
-			#corr_Qc_string_final=corr_Qc_string.substr(0,5)
-		#else:
-			#corr_Qc_string_final=corr_Qc_string.substr(0,4)
-	#else:
-		#corr_Qc_string_final=corr_Qc_string.substr(0,4)
-		#
-	#print("correct Qc answer will be "+corr_Qc_string_final)	
-	#return corr_Qc_string_final	
 	var corr_Qc_string_final=" "	
 	var corr_Qc_string_form=str(corr_Qc)
 	var valid_sig_figs_counter=0
@@ -243,8 +230,9 @@ func check_conc_ans( user_Qc: String,value: float):
 	var float_Qc=float(user_Qc)
 	corr_Qc=snapped(corr_Qc,0.000001)
 	var final_corr_Qc=sig_fig_fixer(corr_Qc,3)
+	print("correct Qc is "+str(final_corr_Qc))
 	if(corr_Qc>curr_Kc):
-		print("right now"+str(final_corr_Qc)+" > "+str(curr_Kc))
+		print("right now "+str(final_corr_Qc)+" > "+str(curr_Kc))
 		if((final_corr_Qc==float_Qc) and (value<0)):
 			answer_label.text="correct ! both value"
 			score+=1
@@ -256,14 +244,14 @@ func check_conc_ans( user_Qc: String,value: float):
 			answer_label.text="Slider and Qc values wrong"
 	else:
 		if(corr_Qc<curr_Kc):
-			print("right now"+str(final_corr_Qc)+" < "+str(curr_Kc))
+			print("right now "+str(final_corr_Qc)+" < "+str(curr_Kc))
 			if((final_corr_Qc==float_Qc) and (value>0)):
 				answer_label.text="correct ! both value"
 				score+=1
 			elif(final_corr_Qc==float_Qc):
 				answer_label.text="slider value wrong"
 			elif(value>0):
-				answer_label.text="Qc value wrong"
+				answer_label.text="Qc value wrong."
 			else:
 				answer_label.text="Slider and Qc values wrong"	
 	score_label.text= "Score:"+str(score)
@@ -349,17 +337,25 @@ func _ready():
 	display_temp()
 	print(" num1: "+str(conc_num1)+" num2: "+str(conc_num2)+" num3: "+str(conc_num3)+" num4: "+str(conc_num4))
 
+var submit_click_count=0
 func _on_submit_button_pressed() -> void: # displays answer label
 	var slider_value= slider.value
+	submit_click_count+=1
 	if (qs_type== 1):
 		check_temp_ans(slider_value)
+		$submit_button.disabled=true
 	elif (qs_type==2):
 		check_vol_ans(slider_value)
-	else:
+		$submit_button.disabled=true
+	else:	
 		check_conc_ans(line_edit.text,slider_value)
+		print("submit btn click count for qs type 3: "+str(submit_click_count))
+		if submit_click_count>=2:
+			$submit_button.disabled=true
 
 func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 	
+	$submit_button.disabled=false
 	line_edit.hide()
 	enthalpy_label.text=""
 	question_description.text=" "
