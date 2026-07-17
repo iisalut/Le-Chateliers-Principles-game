@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://db6sying4eqq5" path="res://game_manager.gd" id="1_kninm"]
 [ext_resource type="Texture2D" uid="uid://b7aprc0n0lgul" path="res://blue_grabber.PNG" id="2_k7kv1"]
+[ext_resource type="PackedScene" uid="uid://553jubwg5sgx" path="res://pop_up.tscn" id="3_i0i4q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kninm"]
 bg_color = Color(0.60038817, 0.43917835, 0.60038817, 1)
@@ -26,6 +27,33 @@ gradient = SubResource("Gradient_k7kv1")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7kv1"]
 bg_color = Color(0.98779136, 0.82454944, 0.7354357, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0i4q"]
+bg_color = Color(0.003921569, 0.627451, 0.7882353, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmnlm"]
+bg_color = Color(0.003921569, 0.5058824, 0.6392157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngcn3"]
+bg_color = Color(0.0021827295, 0.50526416, 0.6372784, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.43137255, 0.39215687, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="quiz" type="Control" unique_id=987375832]
 layout_mode = 3
 anchors_preset = 15
@@ -36,9 +64,12 @@ grow_vertical = 2
 script = ExtResource("1_kninm")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1357482995]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 rotation = 0.00038971225
 color = Color(1, 1, 0.8, 1)
 
@@ -187,7 +218,27 @@ offset_bottom = 144.0
 theme_override_colors/default_color = Color(0.84846675, 0.23505858, 0.20952809, 1)
 theme_override_font_sizes/normal_font_size = 32
 
+[node name="help button" type="Button" parent="." unique_id=908418439]
+layout_mode = 0
+offset_left = 1041.0
+offset_top = 17.0
+offset_right = 1120.0
+offset_bottom = 60.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_i0i4q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rmnlm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ngcn3")
+text = "Hints"
+
+[node name="pop up" parent="." unique_id=369196181 instance=ExtResource("3_i0i4q")]
+layout_mode = 1
+offset_left = -301.5
+offset_top = -215.5
+offset_right = 301.5
+offset_bottom = 215.5
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
+
+[editable path="pop up"]

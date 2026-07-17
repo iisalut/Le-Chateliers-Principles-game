@@ -12,6 +12,7 @@ extends Control
 @onready var line_edit: LineEdit = $LineEdit
 @onready var kc_label: RichTextLabel = $"Kc label"
 @onready var qc_value_description: RichTextLabel = $"static stuff/Qc value description"
+@onready var help_button: Button = $"help button"
 
 
 
@@ -251,7 +252,7 @@ func check_conc_ans( user_Qc: String,value: float):
 			elif(final_corr_Qc==float_Qc):
 				answer_label.text="slider value wrong"
 			elif(value>0):
-				answer_label.text="Qc value wrong."
+				answer_label.text="Qc value wrong"
 			else:
 				answer_label.text="Slider and Qc values wrong"	
 	score_label.text= "Score:"+str(score)
