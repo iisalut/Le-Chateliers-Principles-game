@@ -68,6 +68,13 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffm0p"]
+bg_color = Color(0.63529414, 0, 0.21568628, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p60ki"]
 bg_color = Color(0.63350195, 0, 0.21710745, 1)
 corner_radius_top_left = 40
@@ -280,18 +287,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_6id1c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ffm0p")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p60ki")
 text = "x"
 
 [node name="hints label" type="RichTextLabel" parent="pop up help" unique_id=610655624]
-layout_mode = 0
-offset_left = 312.5
-offset_top = 17.0
-offset_right = 379.5
-offset_bottom = 57.0
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 149.0
+offset_right = 252.0
+offset_bottom = 53.0
+grow_horizontal = 2
 theme_override_colors/default_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
-theme_override_font_sizes/normal_font_size = 23
-text = "hints"
+theme_override_font_sizes/normal_font_size = 31
+text = "Hints"
 
 [node name="hints question type label" type="RichTextLabel" parent="pop up help" unique_id=1161703180]
 layout_mode = 1
@@ -300,19 +312,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -140.75
-offset_top = -44.0
-offset_right = 140.75
-offset_bottom = 44.0
+offset_left = -176.0
+offset_top = -185.0
+offset_right = 368.0
+offset_bottom = -91.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
-theme_override_font_sizes/normal_font_size = 32
-text = "formulas"
+theme_override_font_sizes/normal_font_size = 31
+text = "qs types"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
+[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="help button" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="pop up help/exit Button help" to="." method="_on_exit_button_help_pressed"]

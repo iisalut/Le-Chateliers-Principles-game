@@ -192,41 +192,31 @@ func choose_conc_qs():  # the conc dictionary is in here
 
 var actual_final_ans_qc=0.0
 func sig_fig_fixer(corr_Qc, sig_fig_num: int):
-	var corr_Qc_string_final=" "	
-	var corr_Qc_string_form=str(corr_Qc)
-	var valid_sig_figs_counter=0
-	var adjacent_element=""
-	var first_sf_valid=false
-	var current_index=0
 	
-	for i in corr_Qc_string_form:
-		if valid_sig_figs_counter< sig_fig_num:
-			if first_sf_valid==false and (i=="0" or i=="."):
-				corr_Qc_string_final+=i
-				print("current Qc string:"+corr_Qc_string_final)
-			else:
-				first_sf_valid=true
-				print("no more trailing zero's ! valid sf activated")
-				valid_sig_figs_counter+=1
-				corr_Qc_string_final+=i
-				print("current Qc string:"+corr_Qc_string_final)
-				adjacent_element= corr_Qc_string_form[current_index+1]
-		current_index+=1
-		print("sf iteration: "+str(valid_sig_figs_counter))
-	corr_Qc_string_final+=adjacent_element
-	print("before rounding number:"+corr_Qc_string_final)	
+	if corr_Qc==0.0:
+		actual_final_ans_qc=0.0
+		return actual_final_ans_qc	
+		
+	# in python log10(abs(x)) but gd script uses natural log so work around by dividing by log(10.0)	
+	var log10_gdscript=log(abs(corr_Qc))/log(10.0) 
+	
+	var n_digits= sig_fig_num-int(floor(log10_gdscript))-1
+	# in python: sig - int(floor(log10(abs(x)))) - 1
 	#rounding part----
 	var actual_final_ans_qc
-	var splice_length= 	(corr_Qc_string_final.get_slice(".",1)).length()
-	print("splice length:"+ str(splice_length))
-	var base_number = float(corr_Qc_string_final)
+
+	var base_number = corr_Qc
 	print("base_number:"+ str(base_number))
-	var multiplier = pow(10, splice_length - 1)
+	
+	var multiplier = pow(10, n_digits)
 	print("multiplier:"+ str(multiplier))
+	
 	var shifted_number = base_number * multiplier
 	print("shifted_number:"+ str(shifted_number))
-	actual_final_ans_qc = floor(shifted_number + 0.5)
+	
+	actual_final_ans_qc = round(shifted_number)/multiplier
 	print("actual_final_ans_qc"+ str(actual_final_ans_qc))
+	
 	return actual_final_ans_qc
 
 func check_conc_ans( user_Qc: String,value: float):
@@ -361,6 +351,7 @@ func _on_submit_button_pressed() -> void: # displays answer label
 func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 	
 	$submit_button.disabled=false
+	submit_click_count=0
 	line_edit.hide()
 	enthalpy_label.text=""
 	question_description.text=" "
@@ -404,8 +395,8 @@ func _on_exit_button_help_pressed() -> void:
 func _on_help_button_pressed() -> void:
 	pop_up_help.show()
 	if (qs_type== 1):
-		hints_question_type_label.text="Temperature Question"
+		hints_question_type_label.text="Temperature Question \n                  Hints"
 	elif (qs_type==2):
-		hints_question_type_label.text="Volume Question"
+		hints_question_type_label.text="Volume Question Hints"
 	else:	
-		hints_question_type_label.text="Concentration Question"
+		hints_question_type_label.text="Concentration Question \n                 Hints"
