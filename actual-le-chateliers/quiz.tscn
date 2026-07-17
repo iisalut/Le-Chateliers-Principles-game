@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://db6sying4eqq5" path="res://game_manager.gd" id="1_kninm"]
 [ext_resource type="Texture2D" uid="uid://b7aprc0n0lgul" path="res://blue_grabber.PNG" id="2_k7kv1"]
-[ext_resource type="PackedScene" uid="uid://553jubwg5sgx" path="res://pop_up.tscn" id="3_i0i4q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kninm"]
 bg_color = Color(0.60038817, 0.43917835, 0.60038817, 1)
@@ -53,6 +52,28 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgkws"]
+bg_color = Color(0.8162825, 0.9465684, 0.9999438, 1)
+border_color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6id1c"]
+bg_color = Color(0.9161795, 0, 0.3303114, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p60ki"]
+bg_color = Color(0.63350195, 0, 0.21710745, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [node name="quiz" type="Control" unique_id=987375832]
 layout_mode = 3
@@ -220,25 +241,78 @@ theme_override_font_sizes/normal_font_size = 32
 
 [node name="help button" type="Button" parent="." unique_id=908418439]
 layout_mode = 0
-offset_left = 1041.0
-offset_top = 17.0
-offset_right = 1120.0
-offset_bottom = 60.0
+offset_left = 1031.0
+offset_top = 31.0
+offset_right = 1110.0
+offset_bottom = 74.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_i0i4q")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rmnlm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ngcn3")
 text = "Hints"
 
-[node name="pop up" parent="." unique_id=369196181 instance=ExtResource("3_i0i4q")]
+[node name="pop up help" type="Panel" parent="." unique_id=216996961]
 layout_mode = 1
-offset_left = -301.5
-offset_top = -215.5
-offset_right = 301.5
-offset_bottom = 215.5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.5
+offset_top = -197.0
+offset_right = 358.5
+offset_bottom = 197.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hgkws")
+
+[node name="exit Button help" type="Button" parent="pop up help" unique_id=1433126840]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -338.0
+offset_top = -180.0
+offset_right = -298.0
+offset_bottom = -144.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_6id1c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p60ki")
+text = "x"
+
+[node name="hints label" type="RichTextLabel" parent="pop up help" unique_id=610655624]
+layout_mode = 0
+offset_left = 312.5
+offset_top = 17.0
+offset_right = 379.5
+offset_bottom = 57.0
+theme_override_colors/default_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+theme_override_font_sizes/normal_font_size = 23
+text = "hints"
+
+[node name="hints question type label" type="RichTextLabel" parent="pop up help" unique_id=1161703180]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.75
+offset_top = -44.0
+offset_right = 140.75
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "formulas"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
-
-[editable path="pop up"]
+[connection signal="pressed" from="help button" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="pop up help/exit Button help" to="." method="_on_exit_button_help_pressed"]

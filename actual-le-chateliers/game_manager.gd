@@ -13,6 +13,8 @@ extends Control
 @onready var kc_label: RichTextLabel = $"Kc label"
 @onready var qc_value_description: RichTextLabel = $"static stuff/Qc value description"
 @onready var help_button: Button = $"help button"
+@onready var pop_up_help: Panel = $"pop up help"
+@onready var hints_question_type_label: RichTextLabel = $"pop up help/hints question type label"
 
 
 
@@ -334,6 +336,7 @@ func validate_qs(current_qs, question_type):
 					current_qs=curr_qs
 
 func _ready():
+	pop_up_help.hide()
 	line_edit.hide()
 	display_temp()
 	print(" num1: "+str(conc_num1)+" num2: "+str(conc_num2)+" num3: "+str(conc_num3)+" num4: "+str(conc_num4))
@@ -353,6 +356,7 @@ func _on_submit_button_pressed() -> void: # displays answer label
 		print("submit btn click count for qs type 3: "+str(submit_click_count))
 		if submit_click_count>=2:
 			$submit_button.disabled=true
+
 
 func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 	
@@ -392,3 +396,16 @@ func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 				display_conc()
 			else:
 				_on_button_pressed()
+
+func _on_exit_button_help_pressed() -> void:
+	pop_up_help.hide()
+
+
+func _on_help_button_pressed() -> void:
+	pop_up_help.show()
+	if (qs_type== 1):
+		hints_question_type_label.text="Temperature Question"
+	elif (qs_type==2):
+		hints_question_type_label.text="Volume Question"
+	else:	
+		hints_question_type_label.text="Concentration Question"
