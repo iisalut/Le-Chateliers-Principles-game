@@ -16,6 +16,28 @@ extends Control
 @onready var pop_up_help: Panel = $"pop up help"
 @onready var hints_question_type_label: RichTextLabel = $"pop up help/hints question type label"
 
+@onready var endothermic_label: RichTextLabel = $"pop up help/endothermic label"
+@onready var endothermic_info: RichTextLabel = $"pop up help/endothermic info"
+@onready var exothermic_label: RichTextLabel = $"pop up help/exothermic label"
+@onready var exothermic_info: RichTextLabel = $"pop up help/exothermic info"
+
+@onready var vol_dec_label: RichTextLabel = $"pop up help/vol dec label"
+@onready var vol_inc_label: RichTextLabel = $"pop up help/vol inc label"
+@onready var vol_dec_info: RichTextLabel = $"pop up help/vol dec info"
+@onready var vol_inc_info: RichTextLabel = $"pop up help/vol inc info"
+
+@onready var conc_formula: RichTextLabel = $"pop up help/conc formula"
+@onready var conc_1: RichTextLabel = $"pop up help/conc 1"
+@onready var conc_panel: Panel = $"pop up help/conc Panel"
+@onready var conc_2: RichTextLabel = $"pop up help/conc 2"
+@onready var conc_3: RichTextLabel = $"pop up help/conc 3"
+@onready var conc_4: RichTextLabel = $"pop up help/conc 4"
+@onready var conc_formula_2: RichTextLabel = $"pop up help/conc formula2"
+@onready var conc_5: RichTextLabel = $"pop up help/conc 5"
+@onready var conc_formula_3: RichTextLabel = $"pop up help/conc formula3"
+@onready var conc_button: Button = $"pop up help/conc button"
+@onready var conc_pop_up_ans: RichTextLabel = $"pop up help/conc pop up ans"
+
 
 
 #--- conc dict-------
@@ -142,6 +164,8 @@ func display_vol():
 var random_select_conc=randi_range(0,6)
 var curr_Kc=""
 var corr_Qc=0
+var final_corr_Qc=0.0
+
 
 var can_conc_activate= true
 func correct_Qc_calculation(): # need to update this for every added conc qs
@@ -190,6 +214,7 @@ func choose_conc_qs():  # the conc dictionary is in here
 	print("current Kc "+str(curr_Kc))
 
 
+
 var actual_final_ans_qc=0.0
 func sig_fig_fixer(corr_Qc, sig_fig_num: int):
 	
@@ -219,10 +244,10 @@ func sig_fig_fixer(corr_Qc, sig_fig_num: int):
 	
 	return actual_final_ans_qc
 
+
 func check_conc_ans( user_Qc: String,value: float):
 	var float_Qc=float(user_Qc)
 	corr_Qc=snapped(corr_Qc,0.000001)
-	var final_corr_Qc=sig_fig_fixer(corr_Qc,3)
 	print("correct Qc is "+str(final_corr_Qc))
 	if(corr_Qc>curr_Kc):
 		print("right now "+str(final_corr_Qc)+" > "+str(curr_Kc))
@@ -257,6 +282,7 @@ func display_conc():
 	kc_label.text="Kc value: "+str(curr_Kc)
 	question_description.text="Calculate Qc and predict how the equilibrium will shift based on the Qc and Kc value"
 	qc_value_description.text="Enter Qc value"
+	final_corr_Qc=sig_fig_fixer(corr_Qc,3) # moved it here cause not working anywhere else
 #----------------------------------------
 func validate_qs(current_qs, question_type): 
 	# takes curr_qs and question_type figures out what type of question.
@@ -329,6 +355,7 @@ func _ready():
 	pop_up_help.hide()
 	line_edit.hide()
 	display_temp()
+	qs_type=1
 	print(" num1: "+str(conc_num1)+" num2: "+str(conc_num2)+" num3: "+str(conc_num3)+" num4: "+str(conc_num4))
 
 var submit_click_count=0
@@ -352,6 +379,30 @@ func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 	
 	$submit_button.disabled=false
 	submit_click_count=0
+	
+	exothermic_label.hide()
+	exothermic_info.hide()
+	endothermic_info.hide()
+	endothermic_label.hide()
+	
+	vol_dec_info.hide()
+	vol_dec_label.hide()
+	vol_inc_info.hide()
+	vol_inc_label.hide()
+	
+	conc_1.hide()
+	conc_2.hide()
+	conc_3.hide()
+	conc_4.hide()
+	conc_5.hide()
+	conc_panel.hide()
+	conc_button.hide()
+	conc_formula.hide()
+	conc_formula_2.hide()
+	conc_formula_3.hide()
+	conc_pop_up_ans.hide()
+	conc_pop_up_ans.text=" "
+		
 	line_edit.hide()
 	enthalpy_label.text=""
 	question_description.text=" "
@@ -396,7 +447,29 @@ func _on_help_button_pressed() -> void:
 	pop_up_help.show()
 	if (qs_type== 1):
 		hints_question_type_label.text="Temperature Question \n                  Hints"
+		exothermic_label.show()
+		exothermic_info.show()
+		endothermic_info.show()
+		endothermic_label.show()
 	elif (qs_type==2):
 		hints_question_type_label.text="Volume Question Hints"
+		vol_dec_info.show()
+		vol_dec_label.show()
+		vol_inc_info.show()
+		vol_inc_label.show()
 	else:	
-		hints_question_type_label.text="Concentration Question \n                 Hints"
+		hints_question_type_label.text="Concentration Question Hints"
+		conc_1.show()
+		conc_2.show()
+		conc_3.show()
+		conc_4.show()
+		conc_5.show()
+		conc_panel.show()
+		conc_button.show()
+		conc_formula.show()
+		conc_formula_2.show()
+		conc_formula_3.show()
+		conc_pop_up_ans.show()
+
+func _on_conc_button_pressed() -> void:
+	conc_pop_up_ans.text=str(final_corr_Qc)

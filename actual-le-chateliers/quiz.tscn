@@ -82,6 +82,9 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cg5qh"]
+bg_color = Color(0.033853274, 0.03385329, 0.033853233, 1)
+
 [node name="quiz" type="Control" unique_id=987375832]
 layout_mode = 3
 anchors_preset = 15
@@ -322,9 +325,337 @@ theme_override_colors/default_color = Color(0.11119685, 0.11119684, 0.11119684, 
 theme_override_font_sizes/normal_font_size = 31
 text = "qs types"
 
+[node name="endothermic label" type="RichTextLabel" parent="pop up help" unique_id=1572196888]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -326.0
+offset_top = 2.0
+offset_right = -79.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 27
+text = "Endothermic:"
+
+[node name="endothermic info" type="RichTextLabel" parent="pop up help" unique_id=2088120652]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -326.0
+offset_top = 53.0
+offset_right = 341.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 17
+text = "Heat is a reactant on the left side. The system always shifts away from where you add heat, and towards where you remove it."
+
+[node name="exothermic label" type="RichTextLabel" parent="pop up help" unique_id=127718921]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -326.0
+offset_top = -111.0
+offset_right = -79.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 27
+text = "Exothermic:"
+
+[node name="exothermic info" type="RichTextLabel" parent="pop up help" unique_id=1736188798]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -326.0
+offset_top = -69.0
+offset_right = 341.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 17
+text = "Heat is a product on the right side. The system always shifts away from where you add heat, and towards where you remove it."
+
+[node name="vol dec label" type="RichTextLabel" parent="pop up help" unique_id=1357742688]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = -111.0
+offset_right = -71.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 27
+text = "Volume Decreases:"
+
+[node name="vol inc label" type="RichTextLabel" parent="pop up help" unique_id=1291311888]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = -1.0
+offset_right = -71.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 27
+text = "Volume Increases:"
+
+[node name="vol dec info" type="RichTextLabel" parent="pop up help" unique_id=1459109202]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = -70.0
+offset_right = 349.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 17
+text = "Reducing volume spikes the pressure; the system must shift to the side with fewer gas particles to relieve the stress."
+
+[node name="vol inc info" type="RichTextLabel" parent="pop up help" unique_id=1065186059]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = 37.0
+offset_right = 349.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 17
+text = "Increasing the volume decreases pressure; the system shifts to the side with more gas particles to restore equilibrium."
+
+[node name="conc formula" type="RichTextLabel" parent="pop up help" unique_id=204480406]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -123.0
+offset_right = -49.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.045312412, 0.04531242, 0.04531242, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "1. General Formula:"
+
+[node name="conc 1" type="RichTextLabel" parent="pop up help" unique_id=1783497903]
+visible = false
+layout_mode = 0
+offset_left = 187.5
+offset_top = 106.0
+offset_right = 674.5
+offset_bottom = 207.0
+theme_override_colors/default_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+theme_override_font_sizes/normal_font_size = 18
+text = "Products  (Molarity)
+
+Reactants (Molarity)                x  (Molarity) "
+
+[node name="conc Panel" type="Panel" parent="pop up help" unique_id=2066192322]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.0
+offset_top = -50.0
+offset_right = 292.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cg5qh")
+
+[node name="conc 2" type="RichTextLabel" parent="pop up help" unique_id=2063937188]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -91.0
+offset_right = 101.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.049776644, 0.049776644, 0.049776636, 1)
+theme_override_font_sizes/normal_font_size = 13
+text = "coefficient"
+
+[node name="conc 3" type="RichTextLabel" parent="pop up help" unique_id=1150728251]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -41.0
+offset_right = 101.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.049776644, 0.049776644, 0.049776636, 1)
+theme_override_font_sizes/normal_font_size = 13
+text = "coefficient"
+
+[node name="conc 4" type="RichTextLabel" parent="pop up help" unique_id=1615479503]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 189.0
+offset_top = -41.0
+offset_right = 285.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.049776644, 0.049776644, 0.049776636, 1)
+theme_override_font_sizes/normal_font_size = 13
+text = "coefficient"
+
+[node name="conc formula2" type="RichTextLabel" parent="pop up help" unique_id=42587569]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -9.0
+offset_right = -49.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.045312412, 0.04531242, 0.04531242, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "2. compare Qc vs Kc:"
+
+[node name="conc 5" type="RichTextLabel" parent="pop up help" unique_id=1484393059]
+visible = false
+layout_mode = 0
+offset_left = 131.5
+offset_top = 222.0
+offset_right = 728.5
+offset_bottom = 294.0
+theme_override_colors/default_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+theme_override_constants/paragraph_separation = 8
+theme_override_font_sizes/normal_font_size = 18
+text = "Qc > Kc → more products so how will equilibrium shift ? 
+Qc < Kc → less products so how will equillibrium shift ?"
+
+[node name="conc formula3" type="RichTextLabel" parent="pop up help" unique_id=162505502]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = 97.0
+offset_right = 247.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.045312412, 0.04531242, 0.04531242, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "3. Round answer to 3 significant figures:"
+
+[node name="conc button" type="Button" parent="pop up help" unique_id=1963531019]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -59.0
+offset_right = -113.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Show answer"
+
+[node name="conc pop up ans" type="RichTextLabel" parent="pop up help" unique_id=849544128]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -52.0
+offset_right = 33.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0.06053035, 0.06053035, 0.060530342, 1)
+text = "conc answer"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="help button" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="pop up help/exit Button help" to="." method="_on_exit_button_help_pressed"]
+[connection signal="pressed" from="pop up help/conc button" to="." method="_on_conc_button_pressed"]
