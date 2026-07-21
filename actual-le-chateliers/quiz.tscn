@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://c80m0tjntyelg"]
 
 [ext_resource type="Script" uid="uid://db6sying4eqq5" path="res://game_manager.gd" id="1_kninm"]
+[ext_resource type="Texture2D" uid="uid://c3n7fws0ko2pq" path="res://Screenshot 2026-07-20 at 11.22.08 PM.png" id="2_hgkws"]
 [ext_resource type="Texture2D" uid="uid://b7aprc0n0lgul" path="res://blue_grabber.PNG" id="2_k7kv1"]
+[ext_resource type="Texture2D" uid="uid://bmmxjfwml2ay5" path="res://addons/Screenshot 2026-07-19 at 3.34.30 PM.png" id="3_i0i4q"]
+[ext_resource type="Shader" uid="uid://cv7wy7x2ycb2f" path="res://corner.gdshader" id="3_ngcn3"]
+[ext_resource type="Texture2D" uid="uid://cj3nwtteui7ol" path="res://Screenshot 2026-07-20 at 10.34.39 PM.png" id="3_rmnlm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kninm"]
 bg_color = Color(0.60038817, 0.43917835, 0.60038817, 1)
@@ -24,7 +28,7 @@ gradient = SubResource("Gradient_k7kv1")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgkws"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7kv1"]
-bg_color = Color(0.98779136, 0.82454944, 0.7354357, 1)
+bg_color = Color(0.003921569, 0.627451, 0.7882353, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0i4q"]
 bg_color = Color(0.003921569, 0.627451, 0.7882353, 1)
@@ -53,13 +57,19 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgkws"]
-bg_color = Color(0.8162825, 0.9465684, 0.9999438, 1)
-border_color = Color(0.3019608, 0.3019608, 0.3019608, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6id1c"]
+shader = ExtResource("3_ngcn3")
+shader_parameter/radius_scale = 0.30000000447036
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 1.0
+shader_parameter/height = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p60ki"]
+texture = ExtResource("3_rmnlm")
+modulate_color = Color(0.7779101, 0.8941279, 1.099349, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6id1c"]
 bg_color = Color(0.9161795, 0, 0.3303114, 1)
@@ -85,6 +95,90 @@ corner_radius_bottom_left = 40
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cg5qh"]
 bg_color = Color(0.033853274, 0.03385329, 0.033853233, 1)
 
+[sub_resource type="Shader" id="Shader_ngcn3"]
+code = "shader_type canvas_item;
+// Shader to round corners of a canvas. The 'radius_scale' is multiplied by
+// minimum(width, height)/2.0 to calculate the radius of the corners.
+//
+// Instructions:
+// 1) The node that uses this shader must have signals 'tree_entered' and
+// 'item_rect_changed' connected to a callable with the next code:
+// material.set_shader_parameter(\"width\", size.x)
+// material.set_shader_parameter(\"height\", size.y)
+//
+// Known issues:
+// 1) If used on 'TextureRect', take care of 'expand_mode' and 'stretch_mode',
+// because image corners might be outside node rectangle and therefore clipped.
+// Corners are rounded, but they are outside node's rectangle.
+
+
+uniform float radius_scale: hint_range(0.0, 1.0, 0.1) = 0.1;
+uniform bool rounded_corner_top_left = true;
+uniform bool rounded_corner_top_right = true;
+uniform bool rounded_corner_bottom_left = true;
+uniform bool rounded_corner_bottom_right = true;
+uniform float width = 1.0;
+uniform float height = 1.0;
+
+
+void fragment() {
+	vec4 image = texture(TEXTURE, UV);
+	vec2 pos = vec2(UV.x*width, UV.y*height);
+	float radius = min(width, height)*radius_scale/2.0;
+	float dist;
+	// Top left corner
+	if (rounded_corner_top_left) {
+		dist = length(pos - vec2(radius));
+		if (dist > radius && pos.x < radius && pos.y < radius) {
+			image.a = 0.0;
+		}
+		// debugging only
+//		if (dist < radius){image.r = 1.0;}
+	}
+	// Top right corner
+	if (rounded_corner_top_right) {
+		dist = length(pos - vec2(width-radius, radius));
+		if (dist > radius && pos.x > width-radius && pos.y < radius) {
+			image.a = 0.0;
+		}
+		// debugging only
+//		if (dist < radius){image.r = 1.0;}
+	}
+	// Bottom left corner
+	if (rounded_corner_bottom_left) {
+		dist = length(pos - vec2(radius, height-radius));
+		if (dist > radius && pos.x < radius && pos.y > height-radius) {
+			image.a = 0.0;
+		}
+		// debugging only
+//		if (dist < radius){image.r = 1.0;}
+	}
+	// Bottom right corner
+	if (rounded_corner_bottom_right) {
+		dist = length(pos - vec2(width-radius, height-radius));
+		if (dist > radius && pos.x > width-radius && pos.y > height-radius) {
+			image.a = 0.0;
+		}
+		// debugging only
+//		if (dist < radius){image.r = 1.0;}
+	}
+	COLOR = image * COLOR;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgkws"]
+shader = SubResource("Shader_ngcn3")
+shader_parameter/radius_scale = 0.30000000447036
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 1.0
+shader_parameter/height = 0.76
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffm0p"]
+texture = ExtResource("3_rmnlm")
+modulate_color = Color(0.7492152, 0.8842999, 0.85464925, 1)
+
 [node name="quiz" type="Control" unique_id=987375832]
 layout_mode = 3
 anchors_preset = 15
@@ -103,6 +197,18 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.00038971225
 color = Color(1, 1, 0.8, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1890661342]
+self_modulate = Color(1, 1, 0.8001019, 0.069000006)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hgkws")
+expand_mode = 1
 
 [node name="question_label" type="RichTextLabel" parent="." unique_id=886499720]
 layout_mode = 0
@@ -261,6 +367,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ngcn3")
 text = "Hints"
 
 [node name="pop up help" type="Panel" parent="." unique_id=216996961]
+material = SubResource("ShaderMaterial_6id1c")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -273,7 +380,7 @@ offset_right = 358.5
 offset_bottom = 197.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hgkws")
+theme_override_styles/panel = SubResource("StyleBoxTexture_p60ki")
 
 [node name="exit Button help" type="Button" parent="pop up help" unique_id=1433126840]
 layout_mode = 1
@@ -282,10 +389,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -338.0
-offset_top = -180.0
-offset_right = -298.0
-offset_bottom = -144.0
+offset_left = -326.0
+offset_top = -161.0
+offset_right = -286.0
+offset_bottom = -125.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 26
@@ -326,17 +433,16 @@ theme_override_font_sizes/normal_font_size = 31
 text = "qs types"
 
 [node name="endothermic label" type="RichTextLabel" parent="pop up help" unique_id=1572196888]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -326.0
-offset_top = 2.0
-offset_right = -79.0
-offset_bottom = 53.0
+offset_left = -308.0
+offset_top = 10.0
+offset_right = -61.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -344,17 +450,16 @@ theme_override_font_sizes/normal_font_size = 27
 text = "Endothermic:"
 
 [node name="endothermic info" type="RichTextLabel" parent="pop up help" unique_id=2088120652]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -326.0
-offset_top = 53.0
-offset_right = 341.0
-offset_bottom = 113.0
+offset_left = -308.0
+offset_top = 61.0
+offset_right = 359.0
+offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -362,17 +467,16 @@ theme_override_font_sizes/normal_font_size = 17
 text = "Heat is a reactant on the left side. The system always shifts away from where you add heat, and towards where you remove it."
 
 [node name="exothermic label" type="RichTextLabel" parent="pop up help" unique_id=127718921]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -326.0
-offset_top = -111.0
-offset_right = -79.0
-offset_bottom = -60.0
+offset_left = -308.0
+offset_top = -103.0
+offset_right = -61.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -380,17 +484,16 @@ theme_override_font_sizes/normal_font_size = 27
 text = "Exothermic:"
 
 [node name="exothermic info" type="RichTextLabel" parent="pop up help" unique_id=1736188798]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -326.0
-offset_top = -69.0
-offset_right = 341.0
-offset_bottom = -9.0
+offset_left = -308.0
+offset_top = -61.0
+offset_right = 359.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -405,10 +508,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -318.0
-offset_top = -111.0
-offset_right = -71.0
-offset_bottom = -60.0
+offset_left = -298.0
+offset_top = -103.0
+offset_right = -51.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -423,10 +526,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -318.0
-offset_top = -1.0
-offset_right = -71.0
-offset_bottom = 50.0
+offset_left = -298.0
+offset_top = 7.0
+offset_right = -51.0
+offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -441,10 +544,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -318.0
-offset_top = -70.0
-offset_right = 349.0
-offset_bottom = -10.0
+offset_left = -298.0
+offset_top = -62.0
+offset_right = 369.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -459,10 +562,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -318.0
-offset_top = 37.0
-offset_right = 349.0
-offset_bottom = 97.0
+offset_left = -298.0
+offset_top = 45.0
+offset_right = 369.0
+offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -477,10 +580,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -298.0
-offset_top = -123.0
-offset_right = -49.0
-offset_bottom = -89.0
+offset_left = -286.0
+offset_top = -114.0
+offset_right = -37.0
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.045312412, 0.04531242, 0.04531242, 1)
@@ -490,9 +593,9 @@ text = "1. General Formula:"
 [node name="conc 1" type="RichTextLabel" parent="pop up help" unique_id=1783497903]
 visible = false
 layout_mode = 0
-offset_left = 187.5
+offset_left = 199.5
 offset_top = 106.0
-offset_right = 674.5
+offset_right = 686.5
 offset_bottom = 207.0
 theme_override_colors/default_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
 theme_override_font_sizes/normal_font_size = 18
@@ -508,9 +611,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -182.0
-offset_top = -50.0
-offset_right = 292.0
+offset_left = -170.0
+offset_top = -51.0
+offset_right = 304.0
 offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -524,9 +627,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 5.0
+offset_left = 17.0
 offset_top = -91.0
-offset_right = 101.0
+offset_right = 113.0
 offset_bottom = -66.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -542,9 +645,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 5.0
+offset_left = 17.0
 offset_top = -41.0
-offset_right = 101.0
+offset_right = 113.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -560,9 +663,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 189.0
+offset_left = 201.0
 offset_top = -41.0
-offset_right = 285.0
+offset_right = 297.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -578,9 +681,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -298.0
+offset_left = -286.0
 offset_top = -9.0
-offset_right = -49.0
+offset_right = -37.0
 offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -591,9 +694,9 @@ text = "2. compare Qc vs Kc:"
 [node name="conc 5" type="RichTextLabel" parent="pop up help" unique_id=1484393059]
 visible = false
 layout_mode = 0
-offset_left = 131.5
+offset_left = 143.5
 offset_top = 222.0
-offset_right = 728.5
+offset_right = 740.5
 offset_bottom = 294.0
 theme_override_colors/default_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
 theme_override_constants/paragraph_separation = 8
@@ -609,9 +712,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -298.0
+offset_left = -286.0
 offset_top = 97.0
-offset_right = 247.0
+offset_right = 259.0
 offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -652,6 +755,89 @@ grow_vertical = 0
 theme_override_colors/default_color = Color(0.06053035, 0.06053035, 0.060530342, 1)
 text = "conc answer"
 
+[node name="intro pop up" type="Panel" parent="." unique_id=1139581157]
+visible = false
+material = SubResource("ShaderMaterial_hgkws")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -412.0
+offset_top = -214.0
+offset_right = 422.5
+offset_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ffm0p")
+
+[node name="exit Button intro" type="Button" parent="intro pop up" unique_id=1927177975]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -379.25
+offset_top = -209.5
+offset_right = -339.25
+offset_bottom = -173.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_6id1c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ffm0p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p60ki")
+text = "x"
+
+[node name="intro text" type="RichTextLabel" parent="intro pop up" unique_id=1729194208]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -39.25
+offset_top = 29.0
+offset_right = 57.75
+offset_bottom = 82.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.019554144, 0.019554138, 0.019554136, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "Rules"
+
+[node name="intro text2" type="RichTextLabel" parent="intro pop up" unique_id=255838338]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -362.25
+offset_top = 87.0
+offset_right = 392.75
+offset_bottom = 174.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.019554144, 0.019554138, 0.019554136, 1)
+theme_override_font_sizes/normal_font_size = 22
+text = "1. 3 question types: Temperature, Volume, and Concentration"
+
+[node name="intro text3" type="RichTextLabel" parent="intro pop up" unique_id=1173328423]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -362.25
+offset_top = 131.0
+offset_right = 324.75
+offset_bottom = 218.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.019554144, 0.019554138, 0.019554136, 1)
+theme_override_font_sizes/normal_font_size = 22
+text = "2. You get 2 tries for concentration questions and always round to 3 significant figures"
+
+[node name="cat joke" type="Sprite2D" parent="intro pop up" unique_id=986053944]
+position = Vector2(405, 333)
+scale = Vector2(0.536023, 0.37145525)
+texture = ExtResource("3_i0i4q")
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
@@ -659,3 +845,5 @@ text = "conc answer"
 [connection signal="pressed" from="help button" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="pop up help/exit Button help" to="." method="_on_exit_button_help_pressed"]
 [connection signal="pressed" from="pop up help/conc button" to="." method="_on_conc_button_pressed"]
+[connection signal="pressed" from="intro pop up/exit Button intro" to="." method="_on_exit_button_intro_pressed"]
+[connection signal="pressed" from="intro pop up/exit Button intro" to="." method="_on_exit_button_help_pressed"]

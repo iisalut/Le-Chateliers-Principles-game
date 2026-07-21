@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://4wms437jm8f3"]
+
+[ext_resource type="Script" uid="uid://0hma4yv3q2ki" path="res://end_game.gd" id="1_sjse8"]
+
+[node name="end game" type="Control" unique_id=1977639254]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sjse8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1789133425]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0.8, 1)
+
+[node name="game over text" type="RichTextLabel" parent="." unique_id=133548033]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -334.0
+offset_top = -249.0
+offset_right = 349.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+theme_override_font_sizes/normal_font_size = 72
+text = "Thanks For Playing"
+
+[node name="game over text2" type="RichTextLabel" parent="." unique_id=1387327162]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -122.0
+offset_right = 114.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Final Score:"
+
+[node name="replay button" type="Button" parent="." unique_id=2080930024]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = 23.0
+offset_right = 152.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 46
+text = "Replay"
+
+[connection signal="pressed" from="replay button" to="." method="_on_replay_button_pressed"]

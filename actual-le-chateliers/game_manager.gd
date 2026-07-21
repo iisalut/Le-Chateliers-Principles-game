@@ -38,6 +38,14 @@ extends Control
 @onready var conc_button: Button = $"pop up help/conc button"
 @onready var conc_pop_up_ans: RichTextLabel = $"pop up help/conc pop up ans"
 
+@onready var intro_pop_up: Panel = $"intro pop up"
+@onready var exit_button_intro: Button = $"intro pop up/exit Button intro"
+@onready var intro_text: RichTextLabel = $"intro pop up/intro text"
+@onready var intro_text_2: RichTextLabel = $"intro pop up/intro text2"
+@onready var intro_text_3: RichTextLabel = $"intro pop up/intro text3"
+@onready var cat_joke: Sprite2D = $"intro pop up/cat joke"
+
+
 
 
 #--- conc dict-------
@@ -48,7 +56,7 @@ var conc_num4=0
 
 #--------------------------
 
-var score=0 
+
 var qs_type=1 # first qs always temp BUT keeps track of which qs type (temp,vol,conc)
 var curr_qs="" # current question
 
@@ -73,12 +81,12 @@ func check_temp_ans(value: float) -> void: # HELPER checks temp answers
 	if(heat_added):
 		if curr_enthalpy=="exothermic" and value<0 :
 			answer_label.text="correct !"
-			score+=1
+			QsData.score+=1
 		elif curr_enthalpy=="exothermic" and value>0 :
 			answer_label.text="wrong (heat is added) "
 		elif curr_enthalpy=="endothermic" and value>0:
 			answer_label.text="correct !"
-			score+=1
+			QsData.score+=1
 		else :
 			answer_label.text="wrong (heat is added) "
 	else:
@@ -86,13 +94,13 @@ func check_temp_ans(value: float) -> void: # HELPER checks temp answers
 			answer_label.text="wrong (heat is removed) "
 		elif curr_enthalpy=="exothermic" and value>0 :
 			answer_label.text="correct !"
-			score+=1
+			QsData.score+=1
 		elif curr_enthalpy=="endothermic" and value>0:
 			answer_label.text="wrong (heat is removed) "
 		else :
 			answer_label.text="correct !"
-			score+=1
-	score_label.text= "Score:"+str(score)
+			QsData.score+=1
+	score_label.text= "Score:"+str(QsData.score)
 	print("just checked answer and updated score")
 func display_temp(): # Displays temp labels
 	
@@ -130,22 +138,22 @@ func check_vol_ans(value: float) -> void:
 	if(vol_inc):
 		if curr_max_vol_moles=="right" and value>0 :
 			answer_label.text="Correct vol!"
-			score+=1
+			QsData.score+=1
 		elif curr_max_vol_moles=="left" and value<0:
 			answer_label.text="Correct vol"
-			score+=1
+			QsData.score+=1
 		else:
 			answer_label.text="Wrong :("
 	else:
 		if curr_max_vol_moles=="right" and value<0 :
 			answer_label.text="Correct vol!"
-			score+=1
+			QsData.score+=1
 		elif curr_max_vol_moles=="left" and value>0:
 			answer_label.text="Correct vol"
-			score+=1
+			QsData.score+=1
 		else:
 			answer_label.text="Wrong :("
-	score_label.text= "Score:"+str(score)
+	score_label.text= "Score:"+str(QsData.score)
 	print("just checked answers and updated score")
 
 func display_vol():
@@ -253,7 +261,7 @@ func check_conc_ans( user_Qc: String,value: float):
 		print("right now "+str(final_corr_Qc)+" > "+str(curr_Kc))
 		if((final_corr_Qc==float_Qc) and (value<0)):
 			answer_label.text="correct ! both value"
-			score+=1
+			QsData.score+=1
 		elif(final_corr_Qc==float_Qc):
 			answer_label.text="slider value wrong"
 		elif(value<0):
@@ -265,14 +273,14 @@ func check_conc_ans( user_Qc: String,value: float):
 			print("right now "+str(final_corr_Qc)+" < "+str(curr_Kc))
 			if((final_corr_Qc==float_Qc) and (value>0)):
 				answer_label.text="correct ! both value"
-				score+=1
+				QsData.score+=1
 			elif(final_corr_Qc==float_Qc):
 				answer_label.text="slider value wrong"
 			elif(value>0):
 				answer_label.text="Qc value wrong"
 			else:
 				answer_label.text="Slider and Qc values wrong"	
-	score_label.text= "Score:"+str(score)
+	score_label.text= "Score:"+str(QsData.score)
 	
 func display_conc():
 	choose_conc_qs()
@@ -414,6 +422,7 @@ func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 
 	print("next qs button pressed")
 	if not can_temp_activate and not can_vol_activate and not can_conc_activate:
+		get_tree().change_scene_to_file("res://end_game.tscn")
 		question_label.text = "Game Over! All questions completed."
 		enthalpy_label.text = ""
 		question_description.text = " "
@@ -473,3 +482,11 @@ func _on_help_button_pressed() -> void:
 
 func _on_conc_button_pressed() -> void:
 	conc_pop_up_ans.text=str(final_corr_Qc)
+
+
+func _on_exit_button_intro_pressed() -> void:
+	intro_pop_up.hide()
+	intro_text.hide()
+	intro_text_2.hide()
+	intro_text_3.hide()
+	cat_joke.hide()

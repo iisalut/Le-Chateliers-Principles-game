@@ -18,9 +18,9 @@ var vol_qs_dict={ 0: {"N₂ + 3 H₂ ⇌ 2 NH₃": "left"},
 6:{"PCl₅ ⇌ PCl₃ + Cl₂ ":"right"}
 }
 
-
 var full_finished_qs=[]
 var temp_finished_qs=[]
 var conc_finished_qs=[]
 var vol_finished_qs=[]
-	
+
+static var score=0 
