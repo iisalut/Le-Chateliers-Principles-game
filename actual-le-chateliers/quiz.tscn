@@ -3,9 +3,36 @@
 [ext_resource type="Script" uid="uid://db6sying4eqq5" path="res://game_manager.gd" id="1_kninm"]
 [ext_resource type="Texture2D" uid="uid://c3n7fws0ko2pq" path="res://Screenshot 2026-07-20 at 11.22.08 PM.png" id="2_hgkws"]
 [ext_resource type="Texture2D" uid="uid://b7aprc0n0lgul" path="res://blue_grabber.PNG" id="2_k7kv1"]
+[ext_resource type="FontFile" uid="uid://buyk8sfuem2ob" path="res://YoungSerif-Regular.ttf" id="3_6id1c"]
 [ext_resource type="Texture2D" uid="uid://bmmxjfwml2ay5" path="res://addons/Screenshot 2026-07-19 at 3.34.30 PM.png" id="3_i0i4q"]
 [ext_resource type="Shader" uid="uid://cv7wy7x2ycb2f" path="res://corner.gdshader" id="3_ngcn3"]
 [ext_resource type="Texture2D" uid="uid://cj3nwtteui7ol" path="res://Screenshot 2026-07-20 at 10.34.39 PM.png" id="3_rmnlm"]
+
+[sub_resource type="SystemFont" id="SystemFont_6id1c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgkws"]
+bg_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4b0d1"]
+bg_color = Color(0, 0.32941177, 0.42352942, 0.85490197)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2t48"]
+bg_color = Color(0, 0.32941177, 0.42352942, 0.7411765)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kninm"]
 bg_color = Color(0.60038817, 0.43917835, 0.60038817, 1)
@@ -27,8 +54,42 @@ gradient = SubResource("Gradient_k7kv1")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgkws"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76bif"]
+bg_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ks50"]
+bg_color = Color(0, 0.32941177, 0.42352942, 0.85490197)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kibl2"]
+bg_color = Color(0, 0.32941177, 0.42352942, 0.7411765)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ywla"]
+bg_color = Color(0, 0.33003333, 0.42358288, 0.628)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="SystemFont" id="SystemFont_p60ki"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7kv1"]
-bg_color = Color(0.003921569, 0.627451, 0.7882353, 1)
+bg_color = Color(1, 0.71387357, 0.5220287, 0.781)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0i4q"]
 bg_color = Color(0.003921569, 0.627451, 0.7882353, 1)
@@ -216,8 +277,9 @@ offset_left = 55.0
 offset_top = 88.0
 offset_right = 1041.0
 offset_bottom = 163.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 30
+theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_6id1c")
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "questions"
 
@@ -228,23 +290,31 @@ offset_top = 88.0
 offset_right = 1095.0
 offset_bottom = 152.0
 theme_override_colors/default_color = Color(0.9129348, 0, 0.20002878, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="Button" type="Button" parent="." unique_id=317094057]
 layout_mode = 0
-offset_left = 410.0
+offset_left = 383.0
 offset_top = 509.0
-offset_right = 656.0
+offset_right = 544.0
 offset_bottom = 590.0
-theme_override_font_sizes/font_size = 30
-text = "Next qs"
+theme_override_colors/font_color = Color(1, 0.7137255, 0.52156866, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.7137255, 0.52156866, 1)
+theme_override_colors/font_hover_color = Color(1, 0.7137255, 0.52156866, 1)
+theme_override_fonts/font = ExtResource("3_6id1c")
+theme_override_font_sizes/font_size = 49
+theme_override_styles/normal = SubResource("StyleBoxFlat_hgkws")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4b0d1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v2t48")
+text = "Next "
 
 [node name="slider stuff" type="PanelContainer" parent="." unique_id=1756060802]
 clip_children = 1
 layout_mode = 0
-offset_left = 115.0
+offset_left = 153.0
 offset_top = 388.0
-offset_right = 1031.0
+offset_right = 1005.0
 offset_bottom = 428.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kninm")
 
@@ -265,12 +335,20 @@ step = 10.0
 
 [node name="submit_button" type="Button" parent="." unique_id=116318507]
 layout_mode = 0
-offset_left = 755.0
+offset_left = 609.0
 offset_top = 509.0
-offset_right = 962.0
+offset_right = 848.0
 offset_bottom = 590.0
-theme_override_font_sizes/font_size = 24
-text = "Submit answer"
+theme_override_colors/font_color = Color(0.96862745, 0.7019608, 0.5176471, 1)
+theme_override_colors/font_pressed_color = Color(0.9764706, 0.7019608, 0.52156866, 1)
+theme_override_colors/font_hover_color = Color(0.96862745, 0.7019608, 0.52156866, 1)
+theme_override_fonts/font = ExtResource("3_6id1c")
+theme_override_font_sizes/font_size = 49
+theme_override_styles/normal = SubResource("StyleBoxFlat_76bif")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ks50")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kibl2")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3ywla")
+text = "Submit "
 
 [node name="static stuff" type="Node" parent="." unique_id=1215765184]
 
@@ -279,7 +357,8 @@ offset_left = 13.0
 offset_top = 564.0
 offset_right = 410.0
 offset_bottom = 637.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 33
 text = "Score: "
 
@@ -288,34 +367,38 @@ offset_left = 55.0
 offset_top = 31.0
 offset_right = 582.0
 offset_bottom = 87.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 32
 text = "Consider the following equation:"
 
 [node name="product_label" type="RichTextLabel" parent="static stuff" unique_id=1426051611]
-offset_left = 1042.0
-offset_top = 394.0
-offset_right = 1158.0
-offset_bottom = 434.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 19
+offset_left = 1029.0
+offset_top = 388.0
+offset_right = 1145.0
+offset_bottom = 428.0
+theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 23
 text = "Products"
 
 [node name="reactant_label" type="RichTextLabel" parent="static stuff" unique_id=486680919]
-offset_left = 13.0
-offset_top = 394.0
-offset_right = 133.0
-offset_bottom = 434.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 19
+offset_left = 25.0
+offset_top = 388.0
+offset_right = 145.0
+offset_bottom = 428.0
+theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 23
 text = "Reactants"
 
 [node name="Qc value description" type="RichTextLabel" parent="static stuff" unique_id=959320380]
-offset_left = 933.0
+offset_left = 945.0
 offset_top = 256.0
-offset_right = 1149.0
+offset_right = 1161.0
 offset_bottom = 296.0
-theme_override_colors/default_color = Color(0.12041845, 0.12041845, 0.12041845, 1)
+theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 21
 
 [node name="answer_label" type="RichTextLabel" parent="." unique_id=1630171024]
@@ -325,6 +408,7 @@ offset_top = 469.0
 offset_right = 387.0
 offset_bottom = 565.0
 theme_override_colors/default_color = Color(0.97859687, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 33
 
 [node name="question_description" type="RichTextLabel" parent="." unique_id=340068500]
@@ -333,17 +417,20 @@ offset_left = 55.0
 offset_top = 139.0
 offset_right = 1029.0
 offset_bottom = 256.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 29
 text = "question description"
 
 [node name="LineEdit" type="LineEdit" parent="." unique_id=1496249676]
 layout_mode = 0
-offset_left = 933.0
-offset_top = 296.0
-offset_right = 1110.0
+offset_left = 945.0
+offset_top = 284.0
+offset_right = 1122.0
 offset_bottom = 341.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_p60ki")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_k7kv1")
 
 [node name="Kc label" type="RichTextLabel" parent="." unique_id=493740670]
@@ -353,20 +440,27 @@ offset_top = 87.0
 offset_right = 1126.0
 offset_bottom = 144.0
 theme_override_colors/default_color = Color(0.84846675, 0.23505858, 0.20952809, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="help button" type="Button" parent="." unique_id=908418439]
 layout_mode = 0
-offset_left = 1031.0
+offset_left = 1004.0
 offset_top = 31.0
 offset_right = 1110.0
-offset_bottom = 74.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_colors/font_pressed_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_colors/font_hover_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/font = ExtResource("3_6id1c")
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_i0i4q")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rmnlm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ngcn3")
 text = "Hints"
 
 [node name="pop up help" type="Panel" parent="." unique_id=216996961]
+visible = false
 material = SubResource("ShaderMaterial_6id1c")
 layout_mode = 1
 anchors_preset = 8
@@ -839,8 +933,8 @@ scale = Vector2(0.536023, 0.37145525)
 texture = ExtResource("3_i0i4q")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
+[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="help button" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="pop up help/exit Button help" to="." method="_on_exit_button_help_pressed"]

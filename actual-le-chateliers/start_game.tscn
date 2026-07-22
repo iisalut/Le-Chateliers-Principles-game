@@ -3,9 +3,26 @@
 [ext_resource type="Script" uid="uid://ctlbs885ei0rr" path="res://start_game.gd" id="1_lhive"]
 [ext_resource type="Texture2D" uid="uid://c3n7fws0ko2pq" path="res://Screenshot 2026-07-20 at 11.22.08 PM.png" id="2_amu4p"]
 [ext_resource type="Texture2D" uid="uid://c404hqxju8mee" path="res://le chatelier dude.png" id="3_kbw4x"]
+[ext_resource type="FontFile" uid="uid://cu650w5n7xbn0" path="res://Ballet-Regular-VariableFont_opsz.ttf" id="4_kbw4x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eptn"]
-bg_color = Color(0.98624766, 0.56294864, 0.6908011, 1)
+bg_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amu4p"]
+bg_color = Color(0, 0.33003333, 0.42358288, 0.85600007)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbw4x"]
+bg_color = Color(0, 0.33003333, 0.42358288, 0.74200004)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -73,24 +90,32 @@ flip_h = true
 
 [node name="Label" type="Label" parent="." unique_id=917660890]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 82.0
-offset_right = 1091.0
-offset_bottom = 331.0
-theme_override_colors/font_color = Color(2.7434528e-06, 0.41918835, 0.53147775, 1)
-theme_override_font_sizes/font_size = 89
-text = "Le Chatelier's Principles
-                  Quiz"
+offset_left = 110.0
+offset_top = 81.0
+offset_right = 1052.0
+offset_bottom = 389.0
+theme_override_colors/font_color = Color(8.663535e-07, 0.33116063, 0.42369252, 1)
+theme_override_colors/font_outline_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_constants/line_spacing = -62
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_kbw4x")
+theme_override_font_sizes/font_size = 97
+text = "Le   Chatelier's   Principles 
+                      Quiz"
 
 [node name="Button" type="Button" parent="." unique_id=926817269]
 layout_mode = 0
-offset_left = 415.0
-offset_top = 386.0
-offset_right = 706.0
-offset_bottom = 487.0
-theme_override_colors/font_color = Color(0.08398584, 0.44609243, 0.7049566, 1)
+offset_left = 435.0
+offset_top = 391.0
+offset_right = 726.0
+offset_bottom = 492.0
+theme_override_colors/font_color = Color(1, 0.7137255, 0.52156866, 1)
+theme_override_colors/font_pressed_color = Color(0.98039216, 0.7019608, 0.52156866, 1)
+theme_override_colors/font_hover_color = Color(1, 0.7137255, 0.5254902, 1)
 theme_override_font_sizes/font_size = 56
 theme_override_styles/normal = SubResource("StyleBoxFlat_8eptn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_amu4p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kbw4x")
 text = "Play"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

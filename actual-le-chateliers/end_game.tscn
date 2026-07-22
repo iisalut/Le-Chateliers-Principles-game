@@ -1,6 +1,33 @@
 [gd_scene format=3 uid="uid://4wms437jm8f3"]
 
 [ext_resource type="Script" uid="uid://0hma4yv3q2ki" path="res://end_game.gd" id="1_sjse8"]
+[ext_resource type="FontFile" uid="uid://cu650w5n7xbn0" path="res://Ballet-Regular-VariableFont_opsz.ttf" id="2_5q2h6"]
+[ext_resource type="Texture2D" uid="uid://c3n7fws0ko2pq" path="res://Screenshot 2026-07-20 at 11.22.08 PM.png" id="2_semjh"]
+[ext_resource type="Texture2D" uid="uid://c404hqxju8mee" path="res://le chatelier dude.png" id="3_4amj7"]
+[ext_resource type="FontFile" uid="uid://buyk8sfuem2ob" path="res://YoungSerif-Regular.ttf" id="3_8aegd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_semjh"]
+bg_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4amj7"]
+bg_color = Color(0, 0.32941177, 0.42352942, 0.85490197)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3nuw"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
 
 [node name="end game" type="Control" unique_id=1977639254]
 layout_mode = 3
@@ -20,6 +47,50 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 0.8, 1)
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=195459006]
+self_modulate = Color(1, 1, 0.8001019, 0.069000006)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_semjh")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=1159472682]
+self_modulate = Color(1, 1, 1, 0.70900005)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1152.0
+offset_top = -28.0
+offset_right = -774.0
+offset_bottom = 327.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("3_4amj7")
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=177642677]
+self_modulate = Color(1, 1, 1, 0.70900005)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -382.0
+offset_top = -28.0
+offset_right = -2.0
+offset_bottom = 337.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("3_4amj7")
+
 [node name="game over text" type="RichTextLabel" parent="." unique_id=133548033]
 layout_mode = 1
 anchors_preset = 8
@@ -27,15 +98,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -334.0
-offset_top = -249.0
-offset_right = 349.0
-offset_bottom = -122.0
+offset_left = -417.0
+offset_top = -275.0
+offset_right = 607.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/default_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
-theme_override_font_sizes/normal_font_size = 72
-text = "Thanks For Playing"
+theme_override_colors/default_color = Color(0, 0.32941177, 0.42352942, 1)
+theme_override_colors/font_outline_color = Color(0, 0.32941177, 0.42352942, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/normal_font = ExtResource("2_5q2h6")
+theme_override_font_sizes/normal_font_size = 83
+text = "Thanks    For    Playing"
 
 [node name="game over text2" type="RichTextLabel" parent="." unique_id=1387327162]
 layout_mode = 1
@@ -44,13 +118,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = -122.0
-offset_right = 114.0
-offset_bottom = -54.0
+offset_left = -183.0
+offset_top = -96.0
+offset_right = 141.0
+offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/default_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/normal_font = ExtResource("3_8aegd")
 theme_override_font_sizes/normal_font_size = 36
 text = "Final Score:"
 
@@ -61,13 +136,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = 23.0
-offset_right = 152.0
-offset_bottom = 123.0
+offset_left = -183.0
+offset_top = 18.0
+offset_right = 179.0
+offset_bottom = 118.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.96862745, 0.7019608, 0.5176471, 1)
 theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxFlat_semjh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4amj7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h3nuw")
 text = "Replay"
 
 [connection signal="pressed" from="replay button" to="." method="_on_replay_button_pressed"]
