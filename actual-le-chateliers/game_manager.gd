@@ -80,26 +80,26 @@ func choose_temp_qs():  # HELPER chooses a temp qs from the temp dict
 
 func check_temp_ans(value: float) -> void: # HELPER checks temp answers
 	if(heat_added):
-		if curr_enthalpy=="exothermic" and value<0 :
-			answer_label.text="correct !"
+		if curr_enthalpy=="Exothermic" and value<0 :
+			answer_label.text="Correct"
 			QsData.score+=1
-		elif curr_enthalpy=="exothermic" and value>0 :
-			answer_label.text="wrong (heat is added) "
-		elif curr_enthalpy=="endothermic" and value>0:
-			answer_label.text="correct !"
+		elif curr_enthalpy=="Exothermic" and value>0 :
+			answer_label.text="Wrong"
+		elif curr_enthalpy=="Endothermic" and value>0:
+			answer_label.text="Correct"
 			QsData.score+=1
 		else :
-			answer_label.text="wrong (heat is added) "
+			answer_label.text="Wrong"
 	else:
-		if curr_enthalpy=="exothermic" and value<0 :
-			answer_label.text="wrong (heat is removed) "
-		elif curr_enthalpy=="exothermic" and value>0 :
-			answer_label.text="correct !"
+		if curr_enthalpy=="Exothermic" and value<0 :
+			answer_label.text="Wrong"
+		elif curr_enthalpy=="Exothermic" and value>0 :
+			answer_label.text="Correct !"
 			QsData.score+=1
-		elif curr_enthalpy=="endothermic" and value>0:
-			answer_label.text="wrong (heat is removed) "
+		elif curr_enthalpy=="Endothermic" and value>0:
+			answer_label.text="Wrong"
 		else :
-			answer_label.text="correct !"
+			answer_label.text="Correct !"
 			QsData.score+=1
 	score_label.text= "Score: "+str(QsData.score)
 	print("just checked answer and updated score")
@@ -138,22 +138,22 @@ func choose_vol_qs():
 func check_vol_ans(value: float) -> void:
 	if(vol_inc):
 		if curr_max_vol_moles=="right" and value>0 :
-			answer_label.text="Correct vol!"
+			answer_label.text="Correct"
 			QsData.score+=1
 		elif curr_max_vol_moles=="left" and value<0:
-			answer_label.text="Correct vol"
+			answer_label.text="Correct"
 			QsData.score+=1
 		else:
-			answer_label.text="Wrong :("
+			answer_label.text="Wrong"
 	else:
 		if curr_max_vol_moles=="right" and value<0 :
-			answer_label.text="Correct vol!"
+			answer_label.text="Correct"
 			QsData.score+=1
 		elif curr_max_vol_moles=="left" and value>0:
-			answer_label.text="Correct vol"
+			answer_label.text="Correct"
 			QsData.score+=1
 		else:
-			answer_label.text="Wrong :("
+			answer_label.text="Wrong"
 	score_label.text= "Score: "+str(QsData.score)
 	print("just checked answers and updated score")
 
@@ -261,10 +261,10 @@ func check_conc_ans( user_Qc: String,value: float):
 	if(corr_Qc>curr_Kc):
 		print("right now "+str(final_corr_Qc)+" > "+str(curr_Kc))
 		if((final_corr_Qc==float_Qc) and (value<0)):
-			answer_label.text="correct ! both value"
+			answer_label.text="Correct"
 			QsData.score+=1
 		elif(final_corr_Qc==float_Qc):
-			answer_label.text="slider value wrong"
+			answer_label.text="Slider value wrong"
 		elif(value<0):
 			answer_label.text="Qc value wrong"
 		else:
@@ -273,7 +273,7 @@ func check_conc_ans( user_Qc: String,value: float):
 		if(corr_Qc<curr_Kc):
 			print("right now "+str(final_corr_Qc)+" < "+str(curr_Kc))
 			if((final_corr_Qc==float_Qc) and (value>0)):
-				answer_label.text="correct ! both value"
+				answer_label.text="Correct"
 				QsData.score+=1
 			elif(final_corr_Qc==float_Qc):
 				answer_label.text="slider value wrong"
