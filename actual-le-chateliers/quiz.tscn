@@ -118,6 +118,19 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p60ki"]
+shader = ExtResource("3_ngcn3")
+shader_parameter/radius_scale = 0.30000000447036
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 1.0
+shader_parameter/height = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyahu"]
+bg_color = Color(1, 0.6936509, 0.4988736, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6id1c"]
 shader = ExtResource("3_ngcn3")
 shader_parameter/radius_scale = 0.30000000447036
@@ -130,7 +143,7 @@ shader_parameter/height = 1.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p60ki"]
 texture = ExtResource("3_rmnlm")
-modulate_color = Color(0.7779101, 0.8941279, 1.099349, 1)
+modulate_color = Color(0.9963508, 0.977615, 0.97401655, 0.577)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6id1c"]
 bg_color = Color(0.9161795, 0, 0.3303114, 1)
@@ -155,6 +168,30 @@ corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cg5qh"]
 bg_color = Color(0.033853274, 0.03385329, 0.033853233, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1o6nl"]
+bg_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jekrg"]
+bg_color = Color(0, 0.32941177, 0.42352942, 0.7411765)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oigk4"]
+bg_color = Color(0, 0.32941177, 0.42352942, 0.7411765)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
 
 [sub_resource type="Shader" id="Shader_ngcn3"]
 code = "shader_type canvas_item;
@@ -354,12 +391,12 @@ text = "Submit "
 
 [node name="score_label" type="RichTextLabel" parent="static stuff" unique_id=423988060]
 offset_left = 13.0
-offset_top = 564.0
+offset_top = 567.0
 offset_right = 410.0
-offset_bottom = 637.0
+offset_bottom = 640.0
 theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
-theme_override_font_sizes/normal_font_size = 33
+theme_override_font_sizes/normal_font_size = 38
 text = "Score: "
 
 [node name="qs_title" type="RichTextLabel" parent="static stuff" unique_id=1490217065]
@@ -459,6 +496,16 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_rmnlm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ngcn3")
 text = "Hints"
 
+[node name="bg_Panel" type="Panel" parent="." unique_id=547819302]
+visible = false
+material = SubResource("ShaderMaterial_p60ki")
+layout_mode = 0
+offset_left = 217.5
+offset_top = 127.0
+offset_right = 935.0
+offset_bottom = 521.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eyahu")
+
 [node name="pop up help" type="Panel" parent="." unique_id=216996961]
 visible = false
 material = SubResource("ShaderMaterial_6id1c")
@@ -523,10 +570,12 @@ offset_bottom = -91.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 31
 text = "qs types"
 
 [node name="endothermic label" type="RichTextLabel" parent="pop up help" unique_id=1572196888]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -540,10 +589,12 @@ offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 27
 text = "Endothermic:"
 
 [node name="endothermic info" type="RichTextLabel" parent="pop up help" unique_id=2088120652]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -557,10 +608,12 @@ offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 17
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 19
 text = "Heat is a reactant on the left side. The system always shifts away from where you add heat, and towards where you remove it."
 
 [node name="exothermic label" type="RichTextLabel" parent="pop up help" unique_id=127718921]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -574,10 +627,12 @@ offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 27
 text = "Exothermic:"
 
 [node name="exothermic info" type="RichTextLabel" parent="pop up help" unique_id=1736188798]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -591,7 +646,8 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 17
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 19
 text = "Heat is a product on the right side. The system always shifts away from where you add heat, and towards where you remove it."
 
 [node name="vol dec label" type="RichTextLabel" parent="pop up help" unique_id=1357742688]
@@ -604,12 +660,13 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -298.0
 offset_top = -103.0
-offset_right = -51.0
+offset_right = 60.0
 offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 27
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 30
 text = "Volume Decreases:"
 
 [node name="vol inc label" type="RichTextLabel" parent="pop up help" unique_id=1291311888]
@@ -621,13 +678,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -298.0
-offset_top = 7.0
-offset_right = -51.0
-offset_bottom = 58.0
+offset_top = 25.0
+offset_right = 17.0
+offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 27
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 30
 text = "Volume Increases:"
 
 [node name="vol dec info" type="RichTextLabel" parent="pop up help" unique_id=1459109202]
@@ -639,13 +697,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -298.0
-offset_top = -62.0
-offset_right = 369.0
-offset_bottom = -2.0
+offset_top = -52.0
+offset_right = 359.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 17
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 18
 text = "Reducing volume spikes the pressure; the system must shift to the side with fewer gas particles to relieve the stress."
 
 [node name="vol inc info" type="RichTextLabel" parent="pop up help" unique_id=1065186059]
@@ -657,13 +716,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -298.0
-offset_top = 45.0
+offset_top = 79.0
 offset_right = 369.0
-offset_bottom = 105.0
+offset_bottom = 139.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 17
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 18
 text = "Increasing the volume decreases pressure; the system shifts to the side with more gas particles to restore equilibrium."
 
 [node name="conc formula" type="RichTextLabel" parent="pop up help" unique_id=204480406]
@@ -681,21 +741,23 @@ offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.045312412, 0.04531242, 0.04531242, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 20
 text = "1. General Formula:"
 
 [node name="conc 1" type="RichTextLabel" parent="pop up help" unique_id=1783497903]
 visible = false
 layout_mode = 0
-offset_left = 199.5
+offset_left = 182.5
 offset_top = 106.0
-offset_right = 686.5
+offset_right = 669.5
 offset_bottom = 207.0
 theme_override_colors/default_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 18
 text = "Products  (Molarity)
 
-Reactants (Molarity)                x  (Molarity) "
+Reactants (Molarity)                 x  (Molarity) "
 
 [node name="conc Panel" type="Panel" parent="pop up help" unique_id=2066192322]
 visible = false
@@ -728,6 +790,7 @@ offset_bottom = -66.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.049776644, 0.049776644, 0.049776636, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 13
 text = "coefficient"
 
@@ -746,6 +809,7 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.049776644, 0.049776644, 0.049776636, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 13
 text = "coefficient"
 
@@ -757,13 +821,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 201.0
+offset_left = 214.0
 offset_top = -41.0
-offset_right = 297.0
+offset_right = 310.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.049776644, 0.049776644, 0.049776636, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 13
 text = "coefficient"
 
@@ -782,6 +847,7 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.045312412, 0.04531242, 0.04531242, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 20
 text = "2. compare Qc vs Kc:"
 
@@ -794,6 +860,7 @@ offset_right = 740.5
 offset_bottom = 294.0
 theme_override_colors/default_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
 theme_override_constants/paragraph_separation = 8
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 18
 text = "Qc > Kc → more products so how will equilibrium shift ? 
 Qc < Kc → less products so how will equillibrium shift ?"
@@ -813,6 +880,7 @@ offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.045312412, 0.04531242, 0.04531242, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 20
 text = "3. Round answer to 3 significant figures:"
 
@@ -824,12 +892,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -224.0
+offset_left = -266.0
 offset_top = -59.0
 offset_right = -113.0
-offset_bottom = -20.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.96862745, 0.7019608, 0.5176471, 1)
+theme_override_fonts/font = ExtResource("3_6id1c")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1o6nl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jekrg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oigk4")
 text = "Show answer"
 
 [node name="conc pop up ans" type="RichTextLabel" parent="pop up help" unique_id=849544128]
@@ -842,11 +916,13 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -84.0
 offset_top = -52.0
-offset_right = 33.0
+offset_right = 149.0
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/default_color = Color(0.06053035, 0.06053035, 0.060530342, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 23
 text = "conc answer"
 
 [node name="intro pop up" type="Panel" parent="." unique_id=1139581157]
@@ -890,13 +966,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -39.25
+offset_left = -66.25
 offset_top = 29.0
-offset_right = 57.75
+offset_right = 80.75
 offset_bottom = 82.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.019554144, 0.019554138, 0.019554136, 1)
-theme_override_font_sizes/normal_font_size = 30
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 37
 text = "Rules"
 
 [node name="intro text2" type="RichTextLabel" parent="intro pop up" unique_id=255838338]
@@ -910,6 +987,7 @@ offset_right = 392.75
 offset_bottom = 174.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.019554144, 0.019554138, 0.019554136, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 22
 text = "1. 3 question types: Temperature, Volume, and Concentration"
 
@@ -924,6 +1002,7 @@ offset_right = 324.75
 offset_bottom = 218.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.019554144, 0.019554138, 0.019554136, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 22
 text = "2. You get 2 tries for concentration questions and always round to 3 significant figures"
 
@@ -933,8 +1012,8 @@ scale = Vector2(0.536023, 0.37145525)
 texture = ExtResource("3_i0i4q")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="help button" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="pop up help/exit Button help" to="." method="_on_exit_button_help_pressed"]

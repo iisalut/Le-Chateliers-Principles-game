@@ -6,6 +6,72 @@
 [ext_resource type="Texture2D" uid="uid://c404hqxju8mee" path="res://le chatelier dude.png" id="3_4amj7"]
 [ext_resource type="FontFile" uid="uid://buyk8sfuem2ob" path="res://YoungSerif-Regular.ttf" id="3_8aegd"]
 
+[sub_resource type="Animation" id="Animation_semjh"]
+length = 0.96666664
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prof1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("prof2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_h3nuw"]
+resource_name = "spin_2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prof2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [6.2831855, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4amj7"]
+resource_name = "spin_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prof1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h3nuw"]
+_data = {
+&"RESET": SubResource("Animation_semjh"),
+&"spin_2": SubResource("Animation_h3nuw"),
+&"spin_animation": SubResource("Animation_4amj7")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_semjh"]
 bg_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 corner_radius_top_left = 10
@@ -23,6 +89,7 @@ corner_radius_bottom_left = 10
 corner_detail = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3nuw"]
+bg_color = Color(0, 0.32941177, 0.42352942, 0.7411765)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -58,38 +125,26 @@ grow_vertical = 2
 texture = ExtResource("2_semjh")
 expand_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="." unique_id=1159472682]
-self_modulate = Color(1, 1, 1, 0.70900005)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1152.0
-offset_top = -28.0
-offset_right = -774.0
-offset_bottom = 327.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="prof1" type="Sprite2D" parent="." unique_id=1597383228]
+position = Vector2(964, 474)
+scale = Vector2(1.2033334, 1.1694353)
+texture = ExtResource("3_4amj7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prof1" unique_id=116328442]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_h3nuw")
+autoplay = &"spin_animation"
+
+[node name="prof2" type="Sprite2D" parent="." unique_id=475994972]
+position = Vector2(189, 477)
+scale = Vector2(1.2033334, 1.1694353)
 texture = ExtResource("3_4amj7")
 flip_h = true
 
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=177642677]
-self_modulate = Color(1, 1, 1, 0.70900005)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -382.0
-offset_top = -28.0
-offset_right = -2.0
-offset_bottom = 337.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("3_4amj7")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prof2" unique_id=382984685]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_h3nuw")
+autoplay = &"spin_2"
 
 [node name="game over text" type="RichTextLabel" parent="." unique_id=133548033]
 layout_mode = 1
@@ -143,7 +198,8 @@ offset_bottom = 118.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.96862745, 0.7019608, 0.5176471, 1)
-theme_override_font_sizes/font_size = 46
+theme_override_fonts/font = ExtResource("3_8aegd")
+theme_override_font_sizes/font_size = 59
 theme_override_styles/normal = SubResource("StyleBoxFlat_semjh")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4amj7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_h3nuw")

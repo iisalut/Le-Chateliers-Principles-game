@@ -37,6 +37,7 @@ extends Control
 @onready var conc_formula_3: RichTextLabel = $"pop up help/conc formula3"
 @onready var conc_button: Button = $"pop up help/conc button"
 @onready var conc_pop_up_ans: RichTextLabel = $"pop up help/conc pop up ans"
+@onready var bg_panel: Panel = $bg_Panel
 
 @onready var intro_pop_up: Panel = $"intro pop up"
 @onready var exit_button_intro: Button = $"intro pop up/exit Button intro"
@@ -100,7 +101,7 @@ func check_temp_ans(value: float) -> void: # HELPER checks temp answers
 		else :
 			answer_label.text="correct !"
 			QsData.score+=1
-	score_label.text= "Score:"+str(QsData.score)
+	score_label.text= "Score: "+str(QsData.score)
 	print("just checked answer and updated score")
 func display_temp(): # Displays temp labels
 	
@@ -153,7 +154,7 @@ func check_vol_ans(value: float) -> void:
 			QsData.score+=1
 		else:
 			answer_label.text="Wrong :("
-	score_label.text= "Score:"+str(QsData.score)
+	score_label.text= "Score: "+str(QsData.score)
 	print("just checked answers and updated score")
 
 func display_vol():
@@ -280,7 +281,7 @@ func check_conc_ans( user_Qc: String,value: float):
 				answer_label.text="Qc value wrong"
 			else:
 				answer_label.text="Slider and Qc values wrong"	
-	score_label.text= "Score:"+str(QsData.score)
+	score_label.text= "Score: "+str(QsData.score)
 	
 func display_conc():
 	choose_conc_qs()
@@ -450,10 +451,11 @@ func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 
 func _on_exit_button_help_pressed() -> void:
 	pop_up_help.hide()
-
+	bg_panel.hide()
 
 func _on_help_button_pressed() -> void:
 	pop_up_help.show()
+	bg_panel.show()
 	if (qs_type== 1):
 		hints_question_type_label.text="Temperature Question \n                  Hints"
 		exothermic_label.show()
