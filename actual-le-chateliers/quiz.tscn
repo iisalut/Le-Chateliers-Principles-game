@@ -309,11 +309,15 @@ texture = ExtResource("2_hgkws")
 expand_mode = 1
 
 [node name="question_label" type="RichTextLabel" parent="." unique_id=886499720]
-layout_mode = 0
-offset_left = 55.0
-offset_top = 88.0
-offset_right = 1041.0
-offset_bottom = 163.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -521.0
+offset_top = 87.0
+offset_right = 465.0
+offset_bottom = 162.0
+grow_horizontal = 2
 theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_6id1c")
 theme_override_font_sizes/normal_font_size = 32
@@ -321,21 +325,34 @@ bbcode_enabled = true
 text = "questions"
 
 [node name="enthalpy_label" type="RichTextLabel" parent="." unique_id=1112398362]
-layout_mode = 0
-offset_left = 764.0
-offset_top = 88.0
-offset_right = 1095.0
-offset_bottom = 152.0
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -362.0
+offset_top = 64.0
+offset_right = -31.0
+offset_bottom = 128.0
+grow_horizontal = 0
 theme_override_colors/default_color = Color(0.9129348, 0, 0.20002878, 1)
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 32
+text = "enth"
 
 [node name="Button" type="Button" parent="." unique_id=317094057]
-layout_mode = 0
-offset_left = 383.0
-offset_top = 509.0
-offset_right = 544.0
-offset_bottom = 590.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_top = -139.0
+offset_right = -32.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.7137255, 0.52156866, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.7137255, 0.52156866, 1)
 theme_override_colors/font_hover_color = Color(1, 0.7137255, 0.52156866, 1)
@@ -348,11 +365,18 @@ text = "Next "
 
 [node name="slider stuff" type="PanelContainer" parent="." unique_id=1756060802]
 clip_children = 1
-layout_mode = 0
-offset_left = 153.0
-offset_top = 388.0
-offset_right = 1005.0
-offset_bottom = 428.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -426.0
+offset_top = 61.0
+offset_right = 426.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kninm")
 
 [node name="TextureRect" type="TextureRect" parent="slider stuff" unique_id=76080980]
@@ -371,11 +395,18 @@ max_value = 50.0
 step = 10.0
 
 [node name="submit_button" type="Button" parent="." unique_id=116318507]
-layout_mode = 0
-offset_left = 609.0
-offset_top = 509.0
-offset_right = 848.0
-offset_bottom = 590.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -139.0
+offset_right = 256.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(0.96862745, 0.7019608, 0.5176471, 1)
 theme_override_colors/font_pressed_color = Color(0.9764706, 0.7019608, 0.52156866, 1)
 theme_override_colors/font_hover_color = Color(0.96862745, 0.7019608, 0.52156866, 1)
@@ -390,10 +421,13 @@ text = "Submit "
 [node name="static stuff" type="Node" parent="." unique_id=1215765184]
 
 [node name="score_label" type="RichTextLabel" parent="static stuff" unique_id=423988060]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 13.0
-offset_top = 567.0
+offset_top = -73.0
 offset_right = 410.0
-offset_bottom = 640.0
+grow_vertical = 0
 theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 38
@@ -410,82 +444,125 @@ theme_override_font_sizes/normal_font_size = 32
 text = "Consider the following equation:"
 
 [node name="product_label" type="RichTextLabel" parent="static stuff" unique_id=1426051611]
-offset_left = 1029.0
-offset_top = 388.0
-offset_right = 1145.0
-offset_bottom = 428.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = 61.0
+offset_right = -17.0
+offset_bottom = 101.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 23
 text = "Products"
 
 [node name="reactant_label" type="RichTextLabel" parent="static stuff" unique_id=486680919]
-offset_left = 25.0
-offset_top = 388.0
-offset_right = 145.0
-offset_bottom = 428.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = 64.0
+offset_right = 133.0
+offset_bottom = 104.0
+grow_vertical = 2
 theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 23
 text = "Reactants"
 
 [node name="Qc value description" type="RichTextLabel" parent="static stuff" unique_id=959320380]
-offset_left = 945.0
-offset_top = 256.0
-offset_right = 1161.0
-offset_bottom = 296.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -83.0
+offset_right = 22.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 21
 
 [node name="answer_label" type="RichTextLabel" parent="." unique_id=1630171024]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 13.0
-offset_top = 469.0
+offset_top = -153.0
 offset_right = 387.0
-offset_bottom = 565.0
+offset_bottom = -57.0
+grow_vertical = 0
 theme_override_colors/default_color = Color(0.97859687, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 33
 
 [node name="question_description" type="RichTextLabel" parent="." unique_id=340068500]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
 offset_left = 55.0
-offset_top = 139.0
+offset_top = -172.0
 offset_right = 1029.0
-offset_bottom = 256.0
+offset_bottom = -55.0
+grow_vertical = 2
 theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 29
 text = "question description"
 
 [node name="LineEdit" type="LineEdit" parent="." unique_id=1496249676]
-layout_mode = 0
-offset_left = 945.0
-offset_top = 284.0
-offset_right = 1122.0
-offset_bottom = 341.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -40.0
+offset_right = -17.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_p60ki")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_k7kv1")
 
 [node name="Kc label" type="RichTextLabel" parent="." unique_id=493740670]
-layout_mode = 0
-offset_left = 860.0
-offset_top = 87.0
-offset_right = 1126.0
-offset_bottom = 144.0
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -289.0
+offset_top = 88.0
+offset_right = -23.0
+offset_bottom = 145.0
+grow_horizontal = 0
 theme_override_colors/default_color = Color(0.84846675, 0.23505858, 0.20952809, 1)
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 32
+text = "kc label"
 
 [node name="help button" type="Button" parent="." unique_id=908418439]
-layout_mode = 0
-offset_left = 1004.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -147.0
 offset_top = 31.0
-offset_right = 1110.0
+offset_right = -41.0
 offset_bottom = 80.0
+grow_horizontal = 0
 theme_override_colors/font_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_colors/font_pressed_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_colors/font_hover_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
@@ -499,11 +576,18 @@ text = "Hints"
 [node name="bg_Panel" type="Panel" parent="." unique_id=547819302]
 visible = false
 material = SubResource("ShaderMaterial_p60ki")
-layout_mode = 0
-offset_left = 217.5
-offset_top = 127.0
-offset_right = 935.0
-offset_bottom = 521.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.75
+offset_top = -197.0
+offset_right = 358.75
+offset_bottom = 197.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eyahu")
 
 [node name="pop up help" type="Panel" parent="." unique_id=216996961]
@@ -927,6 +1011,7 @@ theme_override_font_sizes/normal_font_size = 23
 text = "conc answer"
 
 [node name="intro pop up" type="Panel" parent="." unique_id=1139581157]
+visible = false
 material = SubResource("ShaderMaterial_hgkws")
 layout_mode = 1
 anchors_preset = 8

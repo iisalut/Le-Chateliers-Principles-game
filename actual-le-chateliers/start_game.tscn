@@ -40,9 +40,12 @@ grow_vertical = 2
 script = ExtResource("1_lhive")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1128001262]
-layout_mode = 0
-offset_right = 1153.0
-offset_bottom = 646.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 1, 0.8, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2048856893]
@@ -59,42 +62,39 @@ expand_mode = 1
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=970793559]
 self_modulate = Color(1, 1, 1, 0.70900005)
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 3
 anchor_left = 1.0
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -39.0
-offset_right = 66.0
-offset_bottom = 352.5
+anchor_bottom = 1.0
+offset_left = -374.0
+offset_top = -363.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 texture = ExtResource("3_kbw4x")
 
 [node name="TextureRect3" type="TextureRect" parent="." unique_id=539130408]
 self_modulate = Color(1, 1, 1, 0.70900005)
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1205.0
-offset_top = -39.0
-offset_right = -789.0
-offset_bottom = 352.5
-grow_horizontal = 0
-grow_vertical = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -383.0
+offset_right = 416.0
+offset_bottom = 8.5
+grow_vertical = 0
 texture = ExtResource("3_kbw4x")
 flip_h = true
 
 [node name="Label" type="Label" parent="." unique_id=917660890]
-layout_mode = 0
-offset_left = 110.0
-offset_top = 81.0
-offset_right = 1052.0
-offset_bottom = 389.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10329861
+anchor_top = 0.084876545
+anchor_right = 0.9210069
+anchor_bottom = 0.5601852
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(8.663535e-07, 0.33116063, 0.42369252, 1)
 theme_override_colors/font_outline_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_constants/line_spacing = -62
@@ -103,13 +103,21 @@ theme_override_fonts/font = ExtResource("4_kbw4x")
 theme_override_font_sizes/font_size = 97
 text = "Le   Chatelier's   Principles 
                       Quiz"
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="." unique_id=926817269]
-layout_mode = 0
-offset_left = 435.0
-offset_top = 391.0
-offset_right = 726.0
-offset_bottom = 492.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = 59.0
+offset_right = 151.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.7137255, 0.52156866, 1)
 theme_override_colors/font_pressed_color = Color(0.98039216, 0.7019608, 0.52156866, 1)
 theme_override_colors/font_hover_color = Color(1, 0.7137255, 0.5254902, 1)

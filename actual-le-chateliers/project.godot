@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="actual le chateliers"
+run/main_scene="uid://dw6w1h0u8lc0s"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 QsData="*uid://dropiolsnu65f"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
