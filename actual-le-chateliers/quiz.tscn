@@ -608,6 +608,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_p60ki")
 
 [node name="exit Button help" type="Button" parent="pop up help" unique_id=1433126840]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -641,6 +642,7 @@ theme_override_font_sizes/normal_font_size = 31
 text = "Hints"
 
 [node name="hints question type label" type="RichTextLabel" parent="pop up help" unique_id=1161703180]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -947,8 +949,8 @@ theme_override_colors/default_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
 theme_override_constants/paragraph_separation = 8
 theme_override_fonts/normal_font = ExtResource("3_6id1c")
 theme_override_font_sizes/normal_font_size = 18
-text = "Qc > Kc → more products so how will equilibrium shift ? 
-Qc < Kc → less products so how will equillibrium shift ?"
+text = "Qc > Kc --> more products so how will equilibrium shift ? 
+Qc < Kc --> less products so how will equillibrium shift ?"
 
 [node name="conc formula3" type="RichTextLabel" parent="pop up help" unique_id=162505502]
 visible = false
@@ -1011,7 +1013,6 @@ theme_override_font_sizes/normal_font_size = 23
 text = "conc answer"
 
 [node name="intro pop up" type="Panel" parent="." unique_id=1139581157]
-visible = false
 material = SubResource("ShaderMaterial_hgkws")
 layout_mode = 1
 anchors_preset = 8
@@ -1096,9 +1097,41 @@ position = Vector2(405, 333)
 scale = Vector2(0.536023, 0.37145525)
 texture = ExtResource("3_i0i4q")
 
+[node name="ques_num_display" type="RichTextLabel" parent="." unique_id=1456642011]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -410.0
+offset_top = 35.0
+offset_right = -107.0
+offset_bottom = 75.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 23
+text = "Question:      / 20"
+
+[node name="current_qs_number" type="RichTextLabel" parent="." unique_id=1285545660]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -293.0
+offset_top = 35.0
+offset_right = -212.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(0.0627451, 0.3647059, 0.44313726, 1)
+theme_override_fonts/normal_font = ExtResource("3_6id1c")
+theme_override_font_sizes/normal_font_size = 23
+text = "1"
+fit_content = true
+scroll_following = true
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="value_changed" from="slider stuff/slider" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="value_changed" from="slider stuff/slider" to="." method="_on_slider_value_changed"]
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="help button" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="pop up help/exit Button help" to="." method="_on_exit_button_help_pressed"]

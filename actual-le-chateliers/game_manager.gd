@@ -46,17 +46,14 @@ extends Control
 @onready var intro_text_3: RichTextLabel = $"intro pop up/intro text3"
 @onready var cat_joke: Sprite2D = $"intro pop up/cat joke"
 
+@onready var current_qs_number: RichTextLabel = $current_qs_number
 
-
-
-#--- conc dict-------
-var conc_num1=0
-var conc_num2=0
-var conc_num3=0
-var conc_num4=0
 
 #--------------------------
+# question number tracking
+var curr_qs_number=1
 
+#------------
 
 var qs_type=1 # first qs always temp BUT keeps track of which qs type (temp,vol,conc)
 var curr_qs="" # current question
@@ -126,7 +123,7 @@ var curr_max_vol_moles=""
 var vol_inc= 0.5<randf()
 var can_vol_activate= true
 
-
+# chooses a vol qs from dict
 func choose_vol_qs():
 	random_select_vol= randi_range(0,6)
 	var inner_dict= QsData.vol_qs_dict[random_select_vol]
@@ -135,6 +132,7 @@ func choose_vol_qs():
 		curr_max_vol_moles= inner_dict[rxn]
 	print("choosing new vol qs")
 
+#checks vol answers
 func check_vol_ans(value: float) -> void:
 	if(vol_inc):
 		if curr_max_vol_moles=="right" and value>0 :
@@ -157,6 +155,7 @@ func check_vol_ans(value: float) -> void:
 	score_label.text= "Score: "+str(QsData.score)
 	print("just checked answers and updated score")
 
+# displays vol variable on screen
 func display_vol():
 	choose_vol_qs()
 	validate_qs(curr_qs,qs_type)
@@ -169,6 +168,12 @@ func display_vol():
 		print(" description added for vol  qs")
 #-------------------------------------------------------------------------------
 
+#--- conc dict-------
+var conc_num1=0
+var conc_num2=0
+var conc_num3=0
+var conc_num4=0
+
 #---conc variables and functions-----
 var random_select_conc=randi_range(0,6)
 var curr_Kc=""
@@ -177,6 +182,8 @@ var final_corr_Qc=0.0
 
 
 var can_conc_activate= true
+
+# calculates qc values based on question
 func correct_Qc_calculation(): # need to update this for every added conc qs
 	match random_select_conc:
 		0: 
@@ -194,6 +201,7 @@ func correct_Qc_calculation(): # need to update this for every added conc qs
 		6:
 			corr_Qc = ((conc_num3 * conc_num4) / (conc_num1 * conc_num2))
 
+# holds all conc questions with rand int values
 func choose_conc_qs():  # the conc dictionary is in here
 	random_select_conc=randi_range(0,6)
 	conc_num1=snapped(randf_range(0.10,10.0),0.001)
@@ -223,7 +231,7 @@ func choose_conc_qs():  # the conc dictionary is in here
 	print("current Kc "+str(curr_Kc))
 
 
-
+# calculates correct rounded sig fig answer from long float value
 var actual_final_ans_qc=0.0
 func sig_fig_fixer(corr_Qc, sig_fig_num: int):
 	
@@ -253,7 +261,7 @@ func sig_fig_fixer(corr_Qc, sig_fig_num: int):
 	
 	return actual_final_ans_qc
 
-
+# checks conc answer
 func check_conc_ans( user_Qc: String,value: float):
 	var float_Qc=float(user_Qc)
 	corr_Qc=snapped(corr_Qc,0.000001)
@@ -282,7 +290,8 @@ func check_conc_ans( user_Qc: String,value: float):
 			else:
 				answer_label.text="Slider and Qc values wrong"	
 	score_label.text= "Score: "+str(QsData.score)
-	
+
+#displays all func variables on screen
 func display_conc():
 	choose_conc_qs()
 	validate_qs(curr_qs,qs_type)
@@ -292,7 +301,9 @@ func display_conc():
 	question_description.text="Calculate Qc and predict how the equilibrium will shift based on the Qc and Kc value"
 	qc_value_description.text="Enter Qc value"
 	final_corr_Qc=sig_fig_fixer(corr_Qc,3) # moved it here cause not working anywhere else
+
 #----------------------------------------
+# this function filters all the questions and sorts them into completed/ incomplete 
 func validate_qs(current_qs, question_type): 
 	# takes curr_qs and question_type figures out what type of question.
 	# if the chosen qs not in the finished_dict then that is the final chosen question and it is added to the finished_dict
@@ -305,6 +316,7 @@ func validate_qs(current_qs, question_type):
 					QsData.temp_finished_qs.append(curr_qs)
 					QsData.full_finished_qs.append(curr_qs)
 					print(" finished_temp: "+ str(QsData.full_finished_qs))
+					curr_qs_number+=1 # adding it here cause when qs approved the runing qs count is updated
 					print("validate temp just ran")
 					if QsData.temp_finished_qs.size()==6: # need to update this num everytime change num qs
 						can_temp_activate=false
@@ -326,6 +338,7 @@ func validate_qs(current_qs, question_type):
 					QsData.vol_finished_qs.append(curr_qs)
 					QsData.full_finished_qs.append(curr_qs)
 					print(" finished_vol: "+ str(QsData.full_finished_qs))
+					curr_qs_number+=1 # adding it here cause when qs approved the runing qs count is updated
 					print("validate vol just ran")
 					if QsData.vol_finished_qs.size()==7: # need to update this num everytime change num qs
 						can_vol_activate=false
@@ -346,6 +359,7 @@ func validate_qs(current_qs, question_type):
 					QsData.conc_finished_qs.append(curr_qs)
 					QsData.full_finished_qs.append(curr_qs)
 					print(" finished_conc: "+ str(QsData.full_finished_qs))
+					curr_qs_number+=1 # adding it here cause when qs approved the runing qs count is updated
 					print("validate conc just ran")
 					if QsData.conc_finished_qs.size()==7: # need to update this num everytime change num qs
 						can_conc_activate=false
@@ -360,6 +374,7 @@ func validate_qs(current_qs, question_type):
 					print("need to find another question")
 					current_qs=curr_qs
 
+# sets first question type to temp
 func _ready():
 	pop_up_help.hide()
 	line_edit.hide()
@@ -367,6 +382,7 @@ func _ready():
 	qs_type=1
 	print(" num1: "+str(conc_num1)+" num2: "+str(conc_num2)+" num3: "+str(conc_num3)+" num4: "+str(conc_num4))
 
+# submit button that checks if answers are correct
 var submit_click_count=0
 func _on_submit_button_pressed() -> void: # displays answer label
 	var slider_value= slider.value
@@ -383,8 +399,10 @@ func _on_submit_button_pressed() -> void: # displays answer label
 		if submit_click_count>=2:
 			$submit_button.disabled=true
 
-
+# this represents the next button which will change to next qs + counts curr question
 func _on_button_pressed() -> void: # loads in new qs type out of 3 total
+	
+	current_qs_number.text=str(curr_qs_number)# displays current qs num
 	
 	$submit_button.disabled=false
 	submit_click_count=0
@@ -449,10 +467,13 @@ func _on_button_pressed() -> void: # loads in new qs type out of 3 total
 			else:
 				_on_button_pressed()
 
+
+# exit button for hints popup
 func _on_exit_button_help_pressed() -> void:
 	pop_up_help.hide()
 	bg_panel.hide()
 
+# opens hint pop up when "hints" button pressed
 func _on_help_button_pressed() -> void:
 	pop_up_help.show()
 	bg_panel.show()
@@ -482,10 +503,12 @@ func _on_help_button_pressed() -> void:
 		conc_formula_3.show()
 		conc_pop_up_ans.show()
 
+# button that shows answer to concentration question hint
 func _on_conc_button_pressed() -> void:
 	conc_pop_up_ans.text=str(final_corr_Qc)
 
 
+# exit button for the rules pop up
 func _on_exit_button_intro_pressed() -> void:
 	intro_pop_up.hide()
 	intro_text.hide()
