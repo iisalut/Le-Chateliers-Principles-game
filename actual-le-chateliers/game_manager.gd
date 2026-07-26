@@ -48,11 +48,14 @@ extends Control
 
 @onready var current_qs_number: RichTextLabel = $current_qs_number
 
+@onready var mad_dude: TextureRect = $"mad dude"
+@onready var timer: Timer = $"mad dude/Timer"
+
 
 #--------------------------
 # question number tracking
 var curr_qs_number=1
-
+var incorrect_guess_count=0
 #------------
 
 var qs_type=1 # first qs always temp BUT keeps track of which qs type (temp,vol,conc)
@@ -82,19 +85,23 @@ func check_temp_ans(value: float) -> void: # HELPER checks temp answers
 			QsData.score+=1
 		elif curr_enthalpy=="Exothermic" and value>0 :
 			answer_label.text="Wrong"
+			incorrect_guess_count+=1
 		elif curr_enthalpy=="Endothermic" and value>0:
 			answer_label.text="Correct"
 			QsData.score+=1
 		else :
 			answer_label.text="Wrong"
+			incorrect_guess_count+=1
 	else:
 		if curr_enthalpy=="Exothermic" and value<0 :
 			answer_label.text="Wrong"
+			incorrect_guess_count+=1
 		elif curr_enthalpy=="Exothermic" and value>0 :
 			answer_label.text="Correct !"
 			QsData.score+=1
 		elif curr_enthalpy=="Endothermic" and value>0:
 			answer_label.text="Wrong"
+			incorrect_guess_count+=1
 		else :
 			answer_label.text="Correct !"
 			QsData.score+=1
@@ -275,6 +282,7 @@ func check_conc_ans( user_Qc: String,value: float):
 			answer_label.text="Slider value wrong"
 		elif(value<0):
 			answer_label.text="Qc value wrong"
+			incorrect_guess_count+=1
 		else:
 			answer_label.text="Slider and Qc values wrong"
 	else:
@@ -285,10 +293,13 @@ func check_conc_ans( user_Qc: String,value: float):
 				QsData.score+=1
 			elif(final_corr_Qc==float_Qc):
 				answer_label.text="slider value wrong"
+				incorrect_guess_count+=1
 			elif(value>0):
 				answer_label.text="Qc value wrong"
+				incorrect_guess_count+=1
 			else:
-				answer_label.text="Slider and Qc values wrong"	
+				answer_label.text="Slider and Qc values wrong"
+				incorrect_guess_count+=1	
 	score_label.text= "Score: "+str(QsData.score)
 
 #displays all func variables on screen
@@ -376,6 +387,7 @@ func validate_qs(current_qs, question_type):
 
 # sets first question type to temp
 func _ready():
+	mad_dude.hide()
 	pop_up_help.hide()
 	line_edit.hide()
 	display_temp()
@@ -398,6 +410,12 @@ func _on_submit_button_pressed() -> void: # displays answer label
 		print("submit btn click count for qs type 3: "+str(submit_click_count))
 		if submit_click_count>=2:
 			$submit_button.disabled=true
+	
+	if incorrect_guess_count==5:
+		mad_dude.show()
+		timer.start()
+		_on_timer_timeout()
+	print("incorrect guesses: "+ str(incorrect_guess_count))
 
 # this represents the next button which will change to next qs + counts curr question
 func _on_button_pressed() -> void: # loads in new qs type out of 3 total
@@ -515,3 +533,8 @@ func _on_exit_button_intro_pressed() -> void:
 	intro_text_2.hide()
 	intro_text_3.hide()
 	cat_joke.hide()
+
+# timer that removes mad chat dude
+func _on_timer_timeout() -> void:
+	mad_dude.hide()
+	incorrect_guess_count=0

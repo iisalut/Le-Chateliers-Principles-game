@@ -6,6 +6,67 @@
 [ext_resource type="FontFile" uid="uid://cu650w5n7xbn0" path="res://Ballet-Regular-VariableFont_opsz.ttf" id="4_kbw4x"]
 [ext_resource type="FontFile" uid="uid://buyk8sfuem2ob" path="res://YoungSerif-Regular.ttf" id="5_xkwxp"]
 
+[sub_resource type="Animation" id="Animation_xkwxp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.08, 0.08)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ipysq"]
+resource_name = "slight jitter"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.98),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.08, 0.08), Vector2(1.12, 1.12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.1666666, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.015707964, -0.015707964, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_redxk"]
+_data = {
+&"RESET": SubResource("Animation_xkwxp"),
+&"slight jitter": SubResource("Animation_ipysq")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eptn"]
 bg_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 corner_radius_top_left = 10
@@ -88,13 +149,19 @@ flip_h = true
 
 [node name="Label" type="Label" parent="." unique_id=917660890]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.10329861
-anchor_top = 0.084876545
-anchor_right = 0.9210069
-anchor_bottom = 0.5601852
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -465.0
+offset_top = -275.0
+offset_right = 477.20996
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.08, 0.08)
+pivot_offset = Vector2(471, 154)
 theme_override_colors/font_color = Color(8.663535e-07, 0.33116063, 0.42369252, 1)
 theme_override_colors/font_outline_color = Color(0.003921569, 0.32941177, 0.42352942, 1)
 theme_override_constants/line_spacing = -62
@@ -103,7 +170,10 @@ theme_override_fonts/font = ExtResource("4_kbw4x")
 theme_override_font_sizes/font_size = 97
 text = "Le   Chatelier's   Principles 
                       Quiz"
-metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label" unique_id=1424759580]
+libraries/ = SubResource("AnimationLibrary_redxk")
+autoplay = &"slight jitter"
 
 [node name="Button" type="Button" parent="." unique_id=926817269]
 layout_mode = 1
