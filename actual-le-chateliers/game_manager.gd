@@ -150,6 +150,7 @@ func check_vol_ans(value: float) -> void:
 			QsData.score+=1
 		else:
 			answer_label.text="Wrong"
+			incorrect_guess_count+=1
 	else:
 		if curr_max_vol_moles=="right" and value<0 :
 			answer_label.text="Correct"
@@ -159,6 +160,7 @@ func check_vol_ans(value: float) -> void:
 			QsData.score+=1
 		else:
 			answer_label.text="Wrong"
+			incorrect_guess_count+=1
 	score_label.text= "Score: "+str(QsData.score)
 	print("just checked answers and updated score")
 
@@ -414,7 +416,6 @@ func _on_submit_button_pressed() -> void: # displays answer label
 	if incorrect_guess_count==5:
 		mad_dude.show()
 		timer.start()
-		_on_timer_timeout()
 	print("incorrect guesses: "+ str(incorrect_guess_count))
 
 # this represents the next button which will change to next qs + counts curr question

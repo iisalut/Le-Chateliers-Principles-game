@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://0hma4yv3q2ki" path="res://end_game.gd" id="1_sjse8"]
 [ext_resource type="FontFile" uid="uid://cu650w5n7xbn0" path="res://Ballet-Regular-VariableFont_opsz.ttf" id="2_5q2h6"]
 [ext_resource type="Texture2D" uid="uid://c3n7fws0ko2pq" path="res://Screenshot 2026-07-20 at 11.22.08 PM.png" id="2_semjh"]
-[ext_resource type="Texture2D" uid="uid://c404hqxju8mee" path="res://le chatelier dude.png" id="3_4amj7"]
 [ext_resource type="FontFile" uid="uid://buyk8sfuem2ob" path="res://YoungSerif-Regular.ttf" id="3_8aegd"]
+[ext_resource type="Texture2D" uid="uid://ld0ldkxhqi4m" path="res://happy+sad chat dude.PNG" id="5_4amj7"]
 [ext_resource type="PackedScene" uid="uid://b8v5ombwqgj6g" path="res://confetti_particles.tscn" id="6_4amj7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_semjh"]
@@ -25,6 +25,14 @@ corner_detail = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3nuw"]
 bg_color = Color(0.007843138, 0.4509804, 0.5764706, 0.75686276)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3nuw"]
+atlas = ExtResource("5_4amj7")
+region = Rect2(0, 478.42322, 2089.8691, 2259.7769)
 
 [sub_resource type="Animation" id="Animation_semjh"]
 loop_mode = 1
@@ -61,6 +69,90 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_semjh"),
 &"spin1": SubResource("Animation_4amj7")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jppxx"]
+atlas = ExtResource("5_4amj7")
+region = Rect2(149.57813, 501.8003, 1909.1216, 2197.438)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2goxq"]
+atlas = ExtResource("5_4amj7")
+region = Rect2(2175.585, 299.1996, 1940.291, 2361.0771)
+
+[sub_resource type="Animation" id="Animation_5mt7g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(803.00006, 242)]
+}
+
+[sub_resource type="Animation" id="Animation_mao43"]
+resource_name = "mad_jitter"
+length = 0.8666667
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.5, 0.6, 0.73333335, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(803.00006, 242), Vector2(828.00006, 242), Vector2(799, 242), Vector2(821.00006, 242), Vector2(821.00006, 242), Vector2(836.00006, 242), Vector2(791.00006, 242), Vector2(803, 242)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b8sqn"]
+_data = {
+&"RESET": SubResource("Animation_5mt7g"),
+&"mad_jitter": SubResource("Animation_mao43")
+}
+
+[sub_resource type="Animation" id="Animation_57ipk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(28.999996, 242)]
+}
+
+[sub_resource type="Animation" id="Animation_bx16a"]
+resource_name = "new_animation"
+length = 0.6666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.076737806, 0.1373203, 0.18578628, 0.24232993, 0.29079592, 0.35945606, 0.42003855, 0.4927375, 0.5573588, 0.6381355),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(28.999996, 242), Vector2(52, 242), Vector2(3.8146973e-06, 242), Vector2(18.999998, 242), Vector2(-11.999998, 242), Vector2(0, 242), Vector2(0, 242), Vector2(-11.999998, 242), Vector2(12.999996, 242), Vector2(2.861023e-06, 242), Vector2(3.8146973e-06, 242)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j6s1x"]
+_data = {
+&"RESET": SubResource("Animation_57ipk"),
+&"new_animation": SubResource("Animation_bx16a")
 }
 
 [node name="end game" type="Control" unique_id=1977639254]
@@ -118,7 +210,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -183.0
 offset_top = -96.0
-offset_right = 141.0
+offset_right = 263.0
 offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -151,39 +243,43 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_h3nuw")
 text = "Replay"
 
 [node name="prof1" type="TextureRect" parent="." unique_id=567219752]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -338.0
-offset_top = -323.0
-offset_right = -21.669434
-offset_bottom = -22.0
+offset_left = -1215.0
+offset_top = -1304.0
+offset_right = 874.0
+offset_bottom = 955.0
 grow_horizontal = 0
 grow_vertical = 0
 rotation = 6.2831855
-pivot_offset = Vector2(179.867, 161.458)
-texture = ExtResource("3_4amj7")
+scale = Vector2(0.16, 0.16)
+pivot_offset = Vector2(1044.5, 1129.5)
+texture = SubResource("AtlasTexture_h3nuw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="prof1" unique_id=2053656124]
 libraries/ = SubResource("AnimationLibrary_h3nuw")
 autoplay = &"spin1"
 
 [node name="prof2" type="TextureRect" parent="." unique_id=1375762425]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = -326.0
-offset_right = 315.0
-offset_bottom = -25.0
+offset_left = -1581.9999
+offset_top = -2164.0
+offset_right = 1917.5731
+offset_bottom = 1800.9053
 grow_vertical = 0
 rotation = 6.2831855
-pivot_offset = Vector2(179.867, 161.458)
-texture = ExtResource("3_4amj7")
+scale = Vector2(0.09, 0.09)
+pivot_offset = Vector2(1749.787, 1982.453)
+texture = SubResource("AtlasTexture_jppxx")
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="prof2" unique_id=977752904]
@@ -192,5 +288,43 @@ autoplay = &"RESET"
 
 [node name="confetti particles" parent="." unique_id=527708906 instance=ExtResource("6_4amj7")]
 position = Vector2(602, 648)
+
+[node name="prof mad1" type="TextureRect" parent="." unique_id=923633668]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -338.3767
+offset_top = -406.0
+offset_right = 1601.6323
+offset_bottom = 1955.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.17, 0.17)
+texture = SubResource("AtlasTexture_2goxq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prof mad1" unique_id=1421572812]
+libraries/ = SubResource("AnimationLibrary_b8sqn")
+autoplay = &"mad_jitter"
+
+[node name="prof mad2" type="TextureRect" parent="." unique_id=2106756303]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.999996
+offset_top = -406.0
+offset_right = 1969.0
+offset_bottom = 1955.0
+grow_vertical = 0
+scale = Vector2(0.17, 0.17)
+texture = SubResource("AtlasTexture_2goxq")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prof mad2" unique_id=2133689429]
+libraries/ = SubResource("AnimationLibrary_j6s1x")
+autoplay = &"new_animation"
 
 [connection signal="pressed" from="replay button" to="." method="_on_replay_button_pressed"]
