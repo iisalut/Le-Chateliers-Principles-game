@@ -36,6 +36,10 @@ This project taught me a lot about Godot, UI design, and debugging. I'm honestly
 ### Built With
 Godot and GDScript
 
+### Clone/ download game 
+1. download the Chat_9.zip file from my repo
+2. import it into your own Godot and have fun !
+
 ### Play my game !
 
 You can play the game on itch.io :) 
