@@ -37,8 +37,12 @@ This project taught me a lot about Godot, UI design, and debugging. I'm honestly
 Godot and GDScript
 
 ### Clone/ download game 
-1. download the Chat_9.zip file from my repo
-2. import it into your own Godot and have fun !
+1. Download the **Source code (zip)** file automatically generated under the Assets list (or clone this repository).
+2. Extract the folder completely.
+3. Open the **Godot** on your computer.
+4. Click the **Import** button.
+5. Browse to the extracted source folder, select the `project.godot` file, and click opem.
+6. Enjoy the game!
 
 ### Play my game !
 
