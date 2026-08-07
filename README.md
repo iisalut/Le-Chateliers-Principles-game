@@ -48,3 +48,12 @@ Godot and GDScript
 
 You can play the game on itch.io :) 
 link: https://ii-salut.itch.io/le-chateliers-principle-quiz
+
+### Preview
+
+<img width="2270" height="1258" alt="image" src="https://github.com/user-attachments/assets/5be409c0-264e-45d5-8d6f-b9fe702bb156" />
+<img width="2272" height="1326" alt="image" src="https://github.com/user-attachments/assets/e869cedd-b476-4b31-bfde-cba49ef95237" />
+<img width="1150" height="662" alt="image" src="https://github.com/user-attachments/assets/31f45d16-917b-4b53-ab2f-07040f7a5454" />
+<img width="1149" height="638" alt="image" src="https://github.com/user-attachments/assets/b5ea17f7-f702-4b58-87a9-33195401913c" />
+<img width="1146" height="621" alt="image" src="https://github.com/user-attachments/assets/89c1ad28-5cbb-484d-8466-42bc6123ee90" />
+
